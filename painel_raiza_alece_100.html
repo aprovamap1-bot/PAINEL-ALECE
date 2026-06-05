@@ -1,0 +1,3541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprova Map+ · ALECE 2026 · Foco Total</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Paleta clara, suave para os olhos */
+  --bg:        #faf8f4;
+  --bg-2:      #f3eee5;
+  --surface:   #ffffff;
+  --card:      #ffffff;
+  --card-2:    #f7f3eb;
+  --border:    #e6dfd0;
+  --border-2:  #d4cab5;
+
+  --ink:       #2a2520;
+  --ink-soft:  #5a5247;
+  --muted:     #8a8073;
+  --faint:     #b8ad9b;
+
+  /* Acentos elegantes */
+  --plum:      #8b5a8c;   /* roxo elegante */
+  --plum-dim:  #8b5a8c15;
+  --terra:     #c47854;   /* terracota */
+  --terra-dim: #c4785418;
+  --sage:      #6b8e6b;   /* verde sálvia */
+  --sage-dim:  #6b8e6b15;
+  --gold:      #b8923e;   /* dourado fosco */
+  --gold-dim:  #b8923e18;
+  --rose:      #b86b7a;   /* rosa antigo */
+  --rose-dim:  #b86b7a18;
+  --teal:      #4d8a96;   /* azul-teal */
+  --teal-dim:  #4d8a9618;
+  --ochre:     #c19a3e;
+  --ochre-dim: #c19a3e18;
+
+  /* Cores por matéria */
+  --m-port:  var(--plum);
+  --m-rlm:   var(--gold);
+  --m-pcd:   var(--teal);
+  --m-leg:   var(--sage);
+  --m-const: var(--rose);
+  --m-adm:   var(--terra);
+  --m-civil: var(--ochre);
+  --m-proc:  var(--plum);
+  --m-pen:   var(--terra);
+  --m-procp: var(--rose);
+
+  /* SELOS ALECE */
+  --alece:        #4d8a96;
+  --alece-dim:    #4d8a9614;
+  --tj:           #8b5a8c;
+  --tj-dim:       #8b5a8c14;
+  --shared:       #b8923e;
+  --shared-dim:   #b8923e18;
+
+  /* Cores trilhas exclusivas ALECE */
+  --m-redoff: var(--teal);
+  --m-arqv:   var(--sage);
+  --m-procleg: var(--terra);
+  --m-admin:  var(--ochre);
+  --m-atend:  var(--rose);
+  --m-ferr:   var(--plum);
+
+  --font-head: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --r-sm: 8px;
+  --r:    12px;
+  --r-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(42,37,32,0.04);
+  --shadow:    0 2px 8px rgba(42,37,32,0.06);
+  --shadow-lg: 0 8px 24px rgba(42,37,32,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .005em;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ═══════ HEADER ═══════ */
+.hdr {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg-2) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+.hdr-brand { display: flex; align-items: center; gap: 16px; }
+.hdr-logo {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--plum), var(--rose));
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.hdr-title {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: 1.7rem;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.hdr-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 4px;
+  letter-spacing: .02em;
+}
+.hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.hdr-date {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--plum);
+}
+.hdr-motto {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ═══════ COUNTDOWN ═══════ */
+.cd-row {
+  margin: 20px 32px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+.cd-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-sm);
+  border-top: 3px solid var(--plum);
+}
+.cd-card.terra { border-top-color: var(--terra); }
+.cd-card.sage  { border-top-color: var(--sage); }
+.cd-card.gold  { border-top-color: var(--gold); }
+.cd-lbl {
+  font-size: 0.66rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+}
+.cd-num {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--ink);
+  margin: 8px 0 4px;
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.cd-info {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+}
+
+/* ═══════ TABS ═══════ */
+.tabs-wrap {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  padding: 18px 32px 0;
+  overflow-x: auto;
+}
+.tabs {
+  display: flex;
+  gap: 4px;
+  min-width: max-content;
+}
+.tab {
+  padding: 10px 18px;
+  border-radius: var(--r) var(--r) 0 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  transition: all .2s;
+  letter-spacing: .01em;
+}
+.tab:hover:not(.active) { color: var(--ink); background: var(--card-2); }
+.tab.active {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--border);
+  border-bottom-color: var(--card);
+  position: relative;
+  bottom: -1px;
+  font-weight: 600;
+}
+
+/* ═══════ CONTENT ═══════ */
+.content { padding: 28px 32px 60px; }
+.panel { display: none; animation: fadeIn .25s ease; }
+.panel.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ═══════ TIPOGRAFIA ═══════ */
+.stitle {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: -.015em;
+  color: var(--ink);
+}
+.stitle-bar {
+  width: 4px;
+  height: 22px;
+  border-radius: 2px;
+  background: var(--plum);
+}
+.stitle-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-weight: 400;
+  margin-left: auto;
+  letter-spacing: .02em;
+}
+
+.subtitle {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* ═══════ HOJE — HERO ═══════ */
+.hero {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--bg-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--plum), var(--rose), var(--gold), var(--sage));
+}
+.hero-data {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+  letter-spacing: -.005em;
+}
+.hero-titulo {
+  font-family: var(--font-head);
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -.025em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.hero-titulo span { color: var(--plum); font-style: italic; }
+.hero-resumo {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 760px;
+}
+.hero-resumo strong { color: var(--ink); font-weight: 600; }
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+  padding-top: 18px;
+  border-top: 1px dashed var(--border);
+}
+.h-stat {
+  display: flex;
+  flex-direction: column;
+}
+.h-stat-val {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--plum);
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+.h-stat-lbl {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* ═══════ BLOCOS DE ESTUDO ═══════ */
+.bloco-list { display: flex; flex-direction: column; gap: 14px; }
+.bloco-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: flex-start;
+  transition: all .25s;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.bloco-card.feito {
+  opacity: .55;
+  background: var(--card-2);
+}
+.bloco-card.feito .bloco-mat { text-decoration: line-through; }
+.bloco-card:hover:not(.feito) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+  border-color: var(--border-2);
+}
+
+.bloco-num {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1.7rem;
+  font-weight: 500;
+  background: var(--card-2);
+  border: 2px solid var(--border-2);
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.bloco-card.b-port  .bloco-num { border-color: var(--m-port);  color: var(--m-port);  background: var(--plum-dim); }
+.bloco-card.b-rlm   .bloco-num { border-color: var(--m-rlm);   color: var(--m-rlm);   background: var(--gold-dim); }
+.bloco-card.b-const .bloco-num { border-color: var(--m-const); color: var(--m-const); background: var(--rose-dim); }
+.bloco-card.b-adm   .bloco-num { border-color: var(--m-adm);   color: var(--m-adm);   background: var(--terra-dim); }
+.bloco-card.b-civil .bloco-num { border-color: var(--m-civil); color: var(--m-civil); background: var(--ochre-dim); }
+.bloco-card.b-proc  .bloco-num { border-color: var(--m-proc);  color: var(--m-proc);  background: var(--plum-dim); }
+.bloco-card.b-pen   .bloco-num { border-color: var(--m-pen);   color: var(--m-pen);   background: var(--terra-dim); }
+.bloco-card.b-procp .bloco-num { border-color: var(--m-procp); color: var(--m-procp); background: var(--rose-dim); }
+.bloco-card.b-pcd   .bloco-num { border-color: var(--m-pcd);   color: var(--m-pcd);   background: var(--teal-dim); }
+.bloco-card.b-leg   .bloco-num { border-color: var(--m-leg);   color: var(--m-leg);   background: var(--sage-dim); }
+.bloco-card.b-quest .bloco-num { border-color: var(--gold);    color: var(--gold);    background: var(--gold-dim); }
+
+.bloco-info { flex: 1; min-width: 0; }
+.bloco-horario {
+  font-size: 0.66rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.bloco-mat {
+  font-family: var(--font-head);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+  letter-spacing: -.005em;
+}
+.bloco-titulo {
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -.015em;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.bloco-detalhe {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.bloco-detalhe strong { color: var(--ink); font-weight: 600; }
+.bloco-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.66rem;
+  color: var(--gold);
+  background: var(--gold-dim);
+  border: 1px solid var(--gold);
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* SELOS DE PROFUNDIDADE (estratégia reverso) */
+.prof-selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.62rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+  margin-left: 6px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.prof-denso {
+  background: rgba(192, 76, 84, 0.12);
+  color: #B5404A;
+  border: 1px solid rgba(192, 76, 84, 0.3);
+}
+.prof-medio {
+  background: rgba(192, 142, 60, 0.12);
+  color: #A57824;
+  border: 1px solid rgba(192, 142, 60, 0.3);
+}
+.prof-amplo {
+  background: rgba(106, 132, 90, 0.12);
+  color: #4F6841;
+  border: 1px solid rgba(106, 132, 90, 0.3);
+}
+
+.legenda-prof {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 14px;
+  font-size: 0.78rem;
+  align-items: center;
+}
+.legenda-prof-lbl {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+.legenda-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* SELOS ALECE */
+.dual-selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.62rem;
+  padding: 3px 9px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: 6px;
+}
+.dual-alece { background: var(--alece-dim); color: var(--alece); border: 1px solid var(--alece); }
+.dual-tj    { background: var(--tj-dim); color: var(--tj); border: 1px solid var(--tj); }
+.dual-2x    { background: var(--shared-dim); color: var(--shared); border: 1px solid var(--shared); }
+
+.trilha-card.tipo-alece { border-left: 4px solid var(--alece); }
+.trilha-card.tipo-tj    { border-left: 4px solid var(--tj); }
+.trilha-card.tipo-2x    { border-left: 4px solid var(--shared); }
+
+/* Divisor DIA/NOITE na aba Hoje */
+.dia-noite-divisor {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 24px 0 14px;
+  padding: 8px 0;
+}
+.dia-noite-titulo {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.dia-noite-linha { flex: 1; height: 1px; background: var(--border); }
+.dia-noite-titulo.alece { color: var(--alece); }
+.dia-noite-titulo.tj    { color: var(--tj); }
+.dia-noite-titulo.shared { color: var(--shared); }
+.dia-noite-sub {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+.bloco-pill.alece { background: var(--alece-dim); color: var(--alece); border-color: var(--alece); }
+.bloco-pill.tj    { background: var(--tj-dim); color: var(--tj); border-color: var(--tj); }
+.bloco-pill.shared { background: var(--shared-dim); color: var(--shared); border-color: var(--shared); }
+
+/* Filtros das trilhas */
+.tipo-filtro-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.tipo-filtro-lbl {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+.tipo-filtro {
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: all 0.15s;
+}
+.tipo-filtro.active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.tipo-filtro.f-alece.active { background: var(--alece); border-color: var(--alece); }
+.tipo-filtro.f-tj.active    { background: var(--tj); border-color: var(--tj); }
+.tipo-filtro.f-2x.active    { background: var(--shared); border-color: var(--shared); }
+.bloco-meta {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 10px 0 0;
+  margin-top: 10px;
+  border-top: 1px dashed var(--border);
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.bloco-meta strong { color: var(--ink-soft); font-weight: 600; }
+
+.bloco-tempo {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--gold);
+  text-align: right;
+  flex-shrink: 0;
+  letter-spacing: -.01em;
+}
+.bloco-tempo small {
+  display: block;
+  font-style: normal;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.bloco-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.btn {
+  padding: 8px 16px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn:hover {
+  border-color: var(--plum);
+  color: var(--plum);
+}
+.btn.btn-primary {
+  background: var(--plum);
+  color: #fff;
+  border-color: var(--plum);
+}
+.btn.btn-primary:hover {
+  background: #6e4870;
+  border-color: #6e4870;
+  color: #fff;
+}
+.btn.btn-done {
+  background: var(--sage-dim);
+  border-color: var(--sage);
+  color: var(--sage);
+}
+.btn.btn-step {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.btn.btn-step:hover {
+  background: var(--gold);
+  color: #fff;
+}
+.btn.btn-timer {
+  background: var(--terra-dim);
+  border-color: var(--terra);
+  color: var(--terra);
+  font-weight: 600;
+}
+.btn.btn-timer:hover {
+  background: var(--terra);
+  color: #fff;
+}
+.btn.btn-timer.running {
+  background: var(--terra);
+  color: #fff;
+  animation: pulse-timer 2s ease-in-out infinite;
+}
+@keyframes pulse-timer {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(192, 116, 84, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(192, 116, 84, 0); }
+}
+
+/* ═══════ TIMER FIXO ═══════ */
+.timer-fixed {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--card);
+  border: 2px solid var(--terra);
+  border-radius: 16px;
+  padding: 14px 18px;
+  box-shadow: 0 10px 40px rgba(192, 116, 84, 0.25);
+  z-index: 100;
+  display: none;
+  min-width: 260px;
+  animation: slideIn .3s ease;
+}
+.timer-fixed.active { display: block; }
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+.timer-fixed-head {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--terra);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.timer-fixed-mat {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.timer-fixed-time {
+  font-family: var(--font-head);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--terra);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.timer-fixed-actions {
+  display: flex;
+  gap: 6px;
+}
+.timer-fixed-actions .btn {
+  flex: 1;
+  font-size: 0.7rem;
+  padding: 6px 10px;
+}
+
+/* ═══════ MODAL DE FINALIZAÇÃO ═══════ */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(35, 30, 38, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+}
+.modal-overlay.active { display: flex; }
+.modal-card {
+  background: var(--card);
+  border-radius: var(--r);
+  padding: 28px;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  border: 1px solid var(--border);
+  animation: modalIn .25s ease;
+}
+@keyframes modalIn {
+  from { transform: scale(.95); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.modal-titulo {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.modal-sub {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  margin-bottom: 18px;
+}
+.modal-tempo-final {
+  background: var(--terra-dim);
+  border: 1px solid var(--terra);
+  border-radius: 12px;
+  padding: 14px 18px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.modal-tempo-final .lbl {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--terra);
+  font-weight: 600;
+}
+.modal-tempo-final .val {
+  font-family: var(--font-head);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--terra);
+  font-variant-numeric: tabular-nums;
+}
+.modal-form-row {
+  margin-bottom: 14px;
+}
+.modal-form-row label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.modal-stars {
+  display: flex;
+  gap: 6px;
+}
+.modal-star {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card2);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-star.active {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.modal-star:hover {
+  border-color: var(--gold);
+}
+.modal-form-row textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card2);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  resize: vertical;
+  min-height: 60px;
+}
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+.modal-actions .btn { flex: 1; }
+
+/* ═══════ CARDS GENÉRICOS ═══════ */
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.box h3 {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+.box h3 .badge { margin-left: 8px; }
+.box p {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.box p:last-child { margin-bottom: 0; }
+.box strong { color: var(--ink); font-weight: 600; }
+.box .accent { color: var(--plum); font-style: italic; }
+
+.box-callout {
+  background: linear-gradient(135deg, var(--plum-dim), transparent);
+  border-left: 3px solid var(--plum);
+}
+.box-callout.terra { background: linear-gradient(135deg, var(--terra-dim), transparent); border-left-color: var(--terra); }
+.box-callout.sage  { background: linear-gradient(135deg, var(--sage-dim),  transparent); border-left-color: var(--sage); }
+.box-callout.gold  { background: linear-gradient(135deg, var(--gold-dim),  transparent); border-left-color: var(--gold); }
+.box-callout.rose  { background: linear-gradient(135deg, var(--rose-dim),  transparent); border-left-color: var(--rose); }
+
+/* ═══════ BADGES ═══════ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  padding: 3px 9px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.b-plum  { background: var(--plum-dim);  color: var(--plum);  border: 1px solid var(--plum); }
+.b-terra { background: var(--terra-dim); color: var(--terra); border: 1px solid var(--terra); }
+.b-sage  { background: var(--sage-dim);  color: var(--sage);  border: 1px solid var(--sage); }
+.b-gold  { background: var(--gold-dim);  color: var(--gold);  border: 1px solid var(--gold); }
+.b-rose  { background: var(--rose-dim);  color: var(--rose);  border: 1px solid var(--rose); }
+.b-teal  { background: var(--teal-dim);  color: var(--teal);  border: 1px solid var(--teal); }
+.b-ochre { background: var(--ochre-dim); color: var(--ochre); border: 1px solid var(--ochre); }
+
+/* ═══════ PROVA INFO ═══════ */
+.prova-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.prova-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.prova-card-lbl {
+  font-size: 0.66rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.prova-card-val {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+.prova-card-sub {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* ═══════ TRILHAS ═══════ */
+.trilhas-toolbar {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow-sm);
+}
+.trilhas-toolbar-lbl {
+  font-size: 0.66rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+}
+.trilhas-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.trilha-chip {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cor, var(--border));
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all .2s;
+  font-family: var(--font-body);
+}
+.trilha-chip:hover {
+  background: var(--card-2);
+  border-color: var(--cor);
+}
+
+.trilha-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px 26px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: 90px;
+}
+.trilha-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.trilha-nome {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -.015em;
+}
+.trilha-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.trilha-sub strong { color: var(--ink-soft); font-weight: 600; }
+.trilha-stat {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--gold);
+  text-align: right;
+}
+.trilha-stat small {
+  display: block;
+  font-style: normal;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.trilha-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.trilha-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width .5s ease;
+}
+
+.etapas {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.etapa-wrap { display: flex; flex-direction: column; }
+.etapa {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: var(--r-sm);
+  background: var(--card-2);
+  cursor: pointer;
+  transition: all .2s;
+}
+.etapa:hover { background: var(--bg-2); }
+.etapa.feita { opacity: .55; }
+.etapa.feita .etapa-titulo { text-decoration: line-through; }
+.etapa.atual {
+  background: var(--gold-dim);
+  border: 1px solid var(--gold);
+}
+.etapa.open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.etapa-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.etapa.feita .etapa-dot {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: #fff;
+}
+.etapa.atual .etapa-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+.etapa-titulo-wrap { flex: 1; min-width: 0; }
+.etapa-titulo {
+  font-family: var(--font-head);
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -.005em;
+  color: var(--ink);
+}
+.etapa-badge {
+  font-size: 0.62rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.etapa-tempo {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.etapa-arrow {
+  width: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.etapa-detail {
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 18px 22px;
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
+}
+.etapa-desc {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.etapa-desc strong { color: var(--ink); font-weight: 600; }
+.etapa-alerta {
+  background: var(--rose-dim);
+  border-left: 3px solid var(--rose);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+.etapa-alerta strong { color: var(--rose); }
+.etapa-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 10px 0;
+  border-top: 1px dashed var(--border);
+  border-bottom: 1px dashed var(--border);
+  margin-bottom: 12px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.etapa-meta strong { color: var(--gold); font-weight: 600; }
+
+.etapa-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ═══════ DIA / SEMANA ═══════ */
+.semana { display: flex; flex-direction: column; gap: 12px; }
+.dia-row {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition: all .2s;
+  box-shadow: var(--shadow-sm);
+}
+.dia-row.hoje-row {
+  border-color: var(--plum);
+  box-shadow: 0 0 0 2px var(--plum-dim);
+}
+.dia-row.descanso { background: var(--card-2); }
+.dia-head {
+  padding: 14px 22px;
+  background: var(--card-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.dia-head.descanso-h { background: transparent; border-bottom: none; }
+.dia-titulo {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+.dia-titulo .dia-ap {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.dia-total {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--gold);
+}
+.dia-blocos {
+  padding: 12px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dia-bloco {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.dia-bloco:last-child { border-bottom: none; }
+.dia-bloco-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dia-bloco-mat {
+  font-family: var(--font-head);
+  font-size: 0.96rem;
+  font-weight: 500;
+  flex: 1;
+  letter-spacing: -.005em;
+}
+.dia-bloco-h {
+  font-family: var(--font-head);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.descanso-msg {
+  padding: 28px;
+  text-align: center;
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+/* ═══════ ROTINA ═══════ */
+.rotina-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.rot-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--plum);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+.rot-card.terra { border-top-color: var(--terra); }
+.rot-card.sage  { border-top-color: var(--sage); }
+.rot-card.gold  { border-top-color: var(--gold); }
+.rot-card.rose  { border-top-color: var(--rose); }
+.rot-bloco {
+  font-size: 0.66rem;
+  color: var(--muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.rot-mat {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  letter-spacing: -.01em;
+}
+.rot-h {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--gold);
+}
+.rot-tip {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ═══════ DIÁRIO E PROGRESSO ═══════ */
+.diario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 720px) { .diario-grid { grid-template-columns: 1fr; } }
+
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.form-card h3 {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  letter-spacing: -.01em;
+  color: var(--plum);
+}
+.fg { margin-bottom: 14px; }
+.fg label {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.fg select, .fg input[type=number], .fg textarea {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-family: var(--font-body);
+  resize: vertical;
+}
+.fg select:focus, .fg input:focus, .fg textarea:focus {
+  outline: none;
+  border-color: var(--plum);
+}
+.fg input[type=range] {
+  width: 100%;
+  accent-color: var(--plum);
+}
+.conf-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.conf-val { color: var(--gold); font-weight: 700; }
+
+.log-list {
+  max-height: 380px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.log-item {
+  background: var(--card-2);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-left: 3px solid var(--plum);
+}
+.log-mat {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: -.005em;
+}
+.log-meta {
+  font-size: 0.74rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.log-nota {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  margin-top: 4px;
+}
+.log-del {
+  color: var(--rose);
+  cursor: pointer;
+  opacity: .5;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.log-del:hover { opacity: 1; }
+
+/* ═══════ PROGRESSO ═══════ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.stat-val {
+  font-family: var(--font-head);
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--plum);
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.prog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.prog-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+.prog-card h4 {
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  letter-spacing: -.005em;
+}
+.prog-bar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.prog-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width .5s;
+}
+.prog-pct {
+  font-size: 0.74rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ═══════ EMPTY ═══════ */
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 40px 20px;
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* ═══════ ALERT ═══════ */
+.alert {
+  background: linear-gradient(135deg, var(--gold-dim), transparent);
+  border: 1px solid var(--gold);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--r);
+  padding: 14px 20px;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+.alert strong { color: var(--gold); font-weight: 600; }
+
+/* ═══════ EDITAL TAB ═══════ */
+.edital-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.materia-stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 18px 22px;
+  border-left: 4px solid var(--plum);
+  box-shadow: var(--shadow-sm);
+}
+.materia-stat-card.terra { border-left-color: var(--terra); }
+.materia-stat-card.rose  { border-left-color: var(--rose); }
+.materia-stat-card.gold  { border-left-color: var(--gold); }
+.materia-stat-card.sage  { border-left-color: var(--sage); }
+.materia-stat-card.teal  { border-left-color: var(--teal); }
+.materia-stat-card.ochre { border-left-color: var(--ochre); }
+
+.msc-nome {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  letter-spacing: -.01em;
+}
+.msc-info {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.msc-itens {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--plum);
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+.msc-itens small {
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 400;
+  font-family: var(--font-body);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-left: 6px;
+}
+
+/* Section divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0 18px;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.divider-text {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ HEADER ═══════ -->
+<div class="hdr">
+  <div class="hdr-brand">
+    <div class="hdr-logo">A+</div>
+    <div>
+      <div class="hdr-title">Aprova Map+ · ALECE 2026</div>
+      <div class="hdr-sub">🎯 Foco 100% · Técnico Legislativo · IDECAN · 90 vagas</div>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div class="hdr-date" id="dateBadge">—</div>
+    <div class="hdr-motto">"Uma coisa de cada vez. E essa coisa é a ALECE."</div>
+  </div>
+</div>
+
+<!-- ═══════ COUNTDOWN ALECE ═══════ -->
+<div class="cd-row">
+  <div class="cd-card" style="border-top-color:var(--alece);">
+    <div class="cd-lbl">🎯 Prova ALECE</div>
+    <div class="cd-num" id="cdProvaAlece">—</div>
+    <div class="cd-info">Domingo, 16/08/2026 · MANHÃ · 8h-12h</div>
+  </div>
+  <div class="cd-card terra">
+    <div class="cd-lbl">📝 Inscrições</div>
+    <div class="cd-num" id="cdInsc">—</div>
+    <div class="cd-info">21/05 a 22/06/2026 · R$ 97</div>
+  </div>
+  <div class="cd-card sage" id="cdCardCiclo">
+    <div class="cd-lbl">🌱 Início do ciclo</div>
+    <div class="cd-num" id="cdCiclo">—</div>
+    <div class="cd-info" id="cdCicloInfo">Segunda, 25/05/2026</div>
+  </div>
+  <div class="cd-card gold">
+    <div class="cd-lbl">💰 Salário</div>
+    <div class="cd-num">R$ 3.059</div>
+    <div class="cd-info">30h semanais · Fortaleza · 90 vagas (30+60 CR)</div>
+  </div>
+</div>
+
+<!-- ═══════ TABS ═══════ -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <div class="tab active" onclick="goTab('hoje')">📋 Hoje</div>
+    <div class="tab" onclick="goTab('semana')">🗓 Semana</div>
+    <div class="tab" onclick="goTab('trilhas')">🎯 Trilhas</div>
+    <div class="tab" onclick="goTab('edital')">📑 Edital</div>
+    <div class="tab" onclick="goTab('estrategia')">🧠 Estratégia</div>
+    <div class="tab" onclick="goTab('rotina')">⏱ Rotina</div>
+    <div class="tab" onclick="goTab('diario')">📝 Diário</div>
+    <div class="tab" onclick="goTab('progresso')">📊 Progresso</div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════ HOJE ═══════ -->
+<div class="panel active" id="panel-hoje">
+
+  <div class="hero">
+    <div class="hero-data" id="hojeData">—</div>
+    <div class="hero-titulo" id="hojeTitulo">Bom dia, <span>guerreira</span></div>
+    <div class="hero-resumo" id="hojeResumo">Carregando seu plano de hoje…</div>
+    <div class="hero-stats" id="hojeStats"></div>
+  </div>
+
+  <div class="stitle">
+    <div class="stitle-bar"></div>Seu plano de hoje
+    <div class="stitle-sub" id="hojeBlocoCount">— blocos</div>
+  </div>
+
+  <div class="bloco-list" id="blocoList"></div>
+
+  <!-- ESTUDAR OUTRA MATÉRIA (fora do cronograma do dia) -->
+  <div id="extraStudy" style="margin-top:24px;padding:18px 22px;background:var(--card);border:1px dashed var(--border);border-radius:var(--r);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <div style="font-family:var(--font-head);font-size:0.95rem;font-weight:600;color:var(--ink);">📚 Estudar outra matéria hoje</div>
+      <div style="font-size:0.75rem;color:var(--ink-soft);">sem sair do cronograma</div>
+    </div>
+    <div style="font-size:0.82rem;color:var(--ink-soft);margin-bottom:14px;">Quer aproveitar o dia pra ver algo que não está no cronograma de hoje? Escolha abaixo — o cronômetro registra e a etapa avança normalmente.</div>
+    <div id="extraChips" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+    <div id="extraBloco" style="margin-top:14px;display:none;"></div>
+  </div>
+
+  <div class="alert" style="margin-top:24px">
+    <strong>💡 Como funciona o estudo reverso:</strong> em cada bloco, <strong>comece pelas questões</strong> (resolva 5-10), depois leia a teoria do ponto que você errou. Isso fixa 3x mais que decorar primeiro. Marque "Etapa concluída" quando dominar o tópico — não pela passagem do tempo, mas pelo domínio do conteúdo.
+  </div>
+</div>
+
+<!-- ═══════ SEMANA ═══════ -->
+<div class="panel" id="panel-semana">
+  <div class="alert">
+    <strong>🗓 Sua semana · 100% ALECE:</strong> 🌅 3h dia (brechas do bb) + 🌙 2-3h noite após 20h30. Port+RLM diários. Sexta = REDAÇÃO. <strong>Domingo = revisão estratégica de tarde + descanso noite.</strong>
+  </div>
+
+  <div class="stitle">
+    <div class="stitle-bar"></div>Plano por dia
+    <div class="stitle-sub">☀️ blocos curtos no dia + 🌙 foco profundo à noite</div>
+  </div>
+
+  <div class="semana" id="semanaTimeline"></div>
+</div>
+
+<!-- ═══════ TRILHAS ═══════ -->
+<div class="panel" id="panel-trilhas">
+  <div class="box" style="background:linear-gradient(135deg, var(--plum-dim), transparent);border-left:4px solid var(--plum);">
+    <h3 style="margin-top:0;color:var(--plum);font-family:var(--font-head);font-size:1.2rem;">🎯 O que são esses números de dias ao lado de cada etapa?</h3>
+    <p style="font-size:0.9rem;line-height:1.6;color:var(--ink-soft);margin-bottom:10px;">Cada etapa mostra <strong>quantos dias se espera dedicar a ela</strong> — é uma estimativa de quanto tempo um candidato em ritmo normal leva para dominar aquele conteúdo. <strong>NÃO é um prazo fixo.</strong> Se você precisar de mais dias (porque é mãe, porque o bebê precisou, porque o conteúdo é denso), sem culpa — a trilha só avança quando você clica em <em>"✓ Etapa concluída"</em>.</p>
+    <p style="font-size:0.9rem;line-height:1.6;color:var(--ink-soft);margin:0;"><strong style="color:var(--terra);">Como funciona na prática:</strong> a etapa fica <strong>fixa</strong> no Bloco 1 (ou 3, 4...) da aba Hoje até você marcar como concluída. Você pode estudar a mesma etapa por 1 dia, 3 dias, 10 dias — o sistema respeita seu ritmo real. Os "dias estimados" servem só de referência para você não passar tempo demais em uma etapa pequena nem correr demais em uma pesada.</p>
+  </div>
+
+  <div class="trilhas-toolbar">
+    <span class="trilhas-toolbar-lbl">Ver matéria:</span>
+    <div class="trilhas-chips" id="trilhasChips"></div>
+  </div>
+  <div id="trilhasContent"></div>
+</div>
+
+<!-- ═══════ EDITAL ═══════ -->
+<div class="panel" id="panel-edital">
+  <div class="alert">
+    <strong>📑 Edital ALECE 2026 · Técnico Legislativo · fiel ao texto oficial</strong> — Banca IDECAN. Prova domingo 16/08/2026 MANHÃ. 90 candidatos entram (30 vagas + 60 CR). Foco 100% — sem TJ.
+  </div>
+
+  <div class="dia-noite-divisor">
+    <span class="dia-noite-titulo alece">🎯 ALECE · Técnico Legislativo</span>
+    <span class="dia-noite-linha"></span>
+  </div>
+
+  <div class="prova-grid">
+    <div class="prova-card"><div class="prova-card-lbl">Banca</div><div class="prova-card-val">IDECAN</div><div class="prova-card-sub">Edital 01/2026</div></div>
+    <div class="prova-card"><div class="prova-card-lbl">Vagas</div><div class="prova-card-val">30 + 60 CR</div><div class="prova-card-sub">90 candidatos entram · 57 AC</div></div>
+    <div class="prova-card"><div class="prova-card-lbl">Salário</div><div class="prova-card-val">R$ 3.059</div><div class="prova-card-sub">30h/sem · Fortaleza</div></div>
+    <div class="prova-card"><div class="prova-card-lbl">Inscrição</div><div class="prova-card-val">R$ 97</div><div class="prova-card-sub">21/05 a 22/06/2026</div></div>
+  </div>
+
+  <div class="prova-grid" style="margin-top:14px;">
+    <div class="prova-card"><div class="prova-card-lbl">Conhec. Gerais</div><div class="prova-card-val">20q · P1</div><div class="prova-card-sub">Port 10 + RL 5 + Legislação/Ética 5</div></div>
+    <div class="prova-card"><div class="prova-card-lbl">Conhec. Específicos</div><div class="prova-card-val">30q · P2</div><div class="prova-card-sub">6 grandes blocos do Técnico Legislativo</div></div>
+    <div class="prova-card"><div class="prova-card-lbl">Redação</div><div class="prova-card-val">ELIMINATÓRIA</div><div class="prova-card-sub">20-30 linhas · ≥12,00 de 20 · tema atualidade</div></div>
+    <div class="prova-card"><div class="prova-card-lbl">Prova</div><div class="prova-card-val">DOM 16/08</div><div class="prova-card-sub">MANHÃ · 4h · Fortaleza</div></div>
+  </div>
+
+  <div class="divider"><span class="divider-text">2.1 · Conhecimentos Gerais (20q · P1)</span></div>
+
+  <div class="box" style="border-left:4px solid var(--m-port);">
+    <h3 style="color:var(--m-port)">📖 LÍNGUA PORTUGUESA · 10 questões</h3>
+    <p><strong>1. Leitura e interpretação textual.</strong> 1.1. Leitura, compreensão e interpretação de textos. 1.2. Estruturação do texto e dos parágrafos. 1.3. Articulação do texto: pronomes e expressões referenciais, nexos e operadores sequenciais. 1.4. Significação contextual de palavras e expressões. 1.5. Equivalência e transformação de estruturas. 1.6. Linguagem verbal e não verbal: ícone, índice e símbolo. 1.7. Modalizadores discursivos.</p>
+    <p><strong>2. Sintaxe e construção frasal.</strong> 2.1. Sintaxe: processos de coordenação e subordinação. 2.2. Emprego de tempos e modos verbais. 2.3. Pontuação. 2.4. Concordância nominal e verbal. 2.5. Regência nominal e verbal. 2.6. Pronomes: emprego, formas de tratamento e colocação. 2.7. Sintaxe do período simples e composto.</p>
+    <p><strong>3. Morfologia e estrutura das palavras.</strong> 3.1. Estrutura e formação de palavras. 3.2. Funções das classes de palavras. 3.3. Flexão nominal e verbal.</p>
+    <p><strong>4. Norma-padrão da língua portuguesa.</strong> 4.1. Ortografia oficial. 4.2. Acentuação gráfica.</p>
+  </div>
+
+  <div class="box" style="border-left:4px solid var(--m-rlm);margin-top:14px;">
+    <h3 style="color:var(--m-rlm)">🧮 RACIOCÍNIO LÓGICO · 5 questões</h3>
+    <p><strong>1. Estruturas lógicas e dedução.</strong> 1.1. Estrutura lógica de relações arbitrárias entre pessoas, lugares, objetos ou eventos fictícios. 1.2. Dedução de novas informações a partir das relações fornecidas. 1.3. Avaliação das condições utilizadas para estabelecer a estrutura lógica das relações apresentadas.</p>
+    <p><strong>2. Compreensão e análise lógica de situações-problema.</strong> 2.1. Compreensão e análise da lógica de uma situação. 2.2. Raciocínio verbal. 2.3. Raciocínio matemático. 2.4. Raciocínio sequencial. 2.5. Orientação espacial e temporal. 2.6. Formação de conceitos. 2.7. Discriminação de elementos.</p>
+    <p><strong>3. Operações lógicas e resolução de problemas.</strong> 3.1. Operações com conjuntos. 3.2. Raciocínio lógico envolvendo problemas aritméticos. 3.3. Raciocínio lógico envolvendo problemas geométricos. 3.4. Raciocínio lógico envolvendo problemas matriciais.</p>
+  </div>
+
+  <div class="box" style="border-left:4px solid var(--m-leg);margin-top:14px;">
+    <h3 style="color:var(--m-leg)">⚖️ LEGISLAÇÃO E ÉTICA NO SERVIÇO PÚBLICO · 5 questões</h3>
+    <p><strong>1. Legislação aplicada ao serviço público.</strong> 1.1. Lei Federal nº 13.709/2018 – LGPD. 1.2. Lei Federal nº 12.527/2011 – LAI.</p>
+    <p><strong>2. Ética no serviço público.</strong> 2.1. Ética e função pública. 2.2. Ética e moral: definição e distinção. 2.3. Valores, virtude, honestidade, integridade, decoro e zelo no serviço público: conceitos. 2.4. Ética, democracia, cidadania e o papel do servidor público.</p>
+    <p><strong>3. Princípios da Administração Pública aplicados à ética.</strong> 3.1. Princípios da legalidade, impessoalidade, moralidade, publicidade e eficiência. 3.2. Aplicação dos princípios éticos na Administração Pública.</p>
+    <p><strong>4. Legislação Interna:</strong> 4.1 Constituição do Estado do Ceará: disposições relativas ao Poder Legislativo Estadual. 4.2 Lei Estadual nº 9.826/1974 (Estatuto dos Funcionários Públicos Civis do Estado do Ceará). 4.3 Lei Estadual nº 17.091/2019 (Plano de Cargos, Carreira e Remuneração da ALECE). 4.4 Resolução nº 546/2006 (Código de Ética e Decoro Parlamentar). 4.5 Resolução nº 751/2022 (Regimento Interno da ALECE). 4.6 Resolução nº 780/2025 (Estrutura Organizacional da ALECE). 4.7 Resolução nº 783/2026 (Código de Ética e Conduta dos Servidores da ALECE).</p>
+  </div>
+
+  <div class="divider"><span class="divider-text">2.2 · Conhecimentos Específicos Técnico Legislativo (30q · P2)</span></div>
+
+  <div class="box" style="border-left:4px solid var(--m-redoff);">
+    <h3 style="color:var(--m-redoff)">✍️ REDAÇÃO OFICIAL E REVISÃO DE DOCUMENTOS</h3>
+    <p>Características da redação oficial: clareza, precisão, concisão, impessoalidade, formalidade padronizada, uniformidade e objetividade; princípios e técnicas da redação oficial; estrutura, elaboração e padronização de documentos oficiais; atas: finalidade, estrutura, linguagem e formalidades; memorandos: finalidade, estrutura e elaboração; ofícios: finalidade, estrutura, endereçamento, assunto, corpo do texto, fecho e assinatura; portarias, atos, circulares, cartas e expedientes correlatos: finalidade, estrutura e aplicação; comunicações internas e externas; e-mails institucionais, memorandos eletrônicos e documentos digitais; revisão gramatical aplicada à redação oficial: ortografia, acentuação, pontuação, concordância, regência e crase; vícios de linguagem: redundância, prolixidade, ambiguidade e impropriedades textuais; padronização documental: identificação, numeração, timbre, campos obrigatórios e formatação.</p>
+  </div>
+
+  <div class="box" style="border-left:4px solid var(--m-arqv);margin-top:14px;">
+    <h3 style="color:var(--m-arqv)">📁 GESTÃO DOCUMENTAL, ARQUIVOLOGIA E PROTOCOLO</h3>
+    <p>Conceitos de documento, informação, arquivo, processo, pasta, fichário e prontuário; fundamentos e princípios arquivísticos; ciclo vital dos documentos e Teoria das Três Idades; produção, tramitação, utilização e destinação de documentos; classificação, avaliação e temporalidade documental; arquivos correntes, intermediários e permanentes; métodos de arquivamento: alfabético, numérico, cronológico, geográfico e ideográfico; sistemas de arquivamento; organização, conservação e preservação documental; instrumentos de pesquisa: índices, inventários, catálogos, guias e sumários; controle de empréstimo, consulta e recuperação da informação; protocolo: recebimento, registro, classificação, distribuição, movimentação e expedição de documentos; controle e acompanhamento da tramitação documental; instrução processual: autuação, juntada, anexação, apensação, incorporação e formação de processos; digitalização, arquivos eletrônicos e gestão eletrônica de documentos.</p>
+  </div>
+
+  <div class="box" style="border-left:4px solid var(--m-procleg);margin-top:14px;">
+    <h3 style="color:var(--m-procleg)">🏛 PROCESSO LEGISLATIVO E ORGANIZAÇÃO DO PODER LEGISLATIVO</h3>
+    <p>Estrutura e organização do Poder Legislativo Estadual; Mesa Diretora, Presidência, Plenário, Comissões Permanentes e Temporárias; bancadas, lideranças, blocos parlamentares e unidades administrativas; processo legislativo: conceitos e fases; proposições legislativas: projeto de lei, emenda, requerimento, indicação, moção e substitutivo; tramitação de proposições legislativas: protocolo, autuação, distribuição, pareceres, pauta, votação, redação final, sanção, veto, promulgação e publicação; documentos legislativos: atas, pareceres, requerimentos e indicações; técnica legislativa e elaboração normativa; espécies normativas; consolidação e sistematização normativa; consulta e acompanhamento de proposições e atos legislativos; sistemas informatizados de gestão e tramitação legislativa.</p>
+  </div>
+
+  <div class="box" style="border-left:4px solid var(--m-admin);margin-top:14px;">
+    <h3 style="color:var(--m-admin)">📊 ADMINISTRAÇÃO PÚBLICA E SERVIÇOS ADMINISTRATIVOS</h3>
+    <p>Administração Pública: conceitos e organização administrativa; planejamento, organização, direção e controle; rotinas e procedimentos administrativos; organização e métodos administrativos; gestão de processos administrativos; processo administrativo: conceitos e noções gerais; atos administrativos: noções gerais; instrução e análise de processos administrativos; elaboração de minutas e expedientes administrativos; projetos de natureza administrativa: planejamento, implantação, acompanhamento e monitoramento; apoio a comissões, grupos de trabalho e atividades institucionais; organização, controle e recuperação de informações institucionais.</p>
+  </div>
+
+  <div class="box" style="border-left:4px solid var(--m-atend);margin-top:14px;">
+    <h3 style="color:var(--m-atend)">💬 ATENDIMENTO AO PÚBLICO E COMUNICAÇÃO INSTITUCIONAL</h3>
+    <p>Atendimento ao público interno e externo; técnicas de atendimento, acolhimento, escuta ativa e orientação ao usuário; comunicação institucional; prestação de informações e encaminhamento de demandas; orientações sobre tramitação documental e procedimentos administrativos; relações interpessoais e postura profissional; comunicação escrita e verbal no ambiente institucional.</p>
+  </div>
+
+  <div class="box" style="border-left:4px solid var(--m-ferr);margin-top:14px;">
+    <h3 style="color:var(--m-ferr)">💻 FERRAMENTAS E SISTEMAS APLICADOS AO TRABALHO TÉCNICO-LEGISLATIVO</h3>
+    <p>Editores de texto e recursos de formatação documental; planilhas eletrônicas aplicadas ao controle de documentos e informações; correio eletrônico institucional; ferramentas digitais aplicadas à rotina administrativa; sistemas informatizados de protocolo, gestão documental e tramitação legislativa; pesquisa, consulta e acompanhamento de processos e proposições; controle eletrônico de documentos e geração de relatórios.</p>
+  </div>
+
+  <div class="divider"><span class="divider-text">🛡 Critérios de aprovação ALECE</span></div>
+  <div class="box box-callout gold">
+    <h3>🎯 Para passar você precisa:</h3>
+    <p>1. <strong>50% do total</strong> (40 pts de 80 possíveis na objetiva)</p>
+    <p>2. <strong>Mínimo por disciplina:</strong> 1 ponto em cada matéria das Gerais + 2 pontos em cada Específica</p>
+    <p>3. <strong>Redação ≥12,00 de 20</strong> (eliminatória, tema atualidade)</p>
+    <p>4. Estar entre <strong>30 vagas + 60 CR = 90 candidatos chamados</strong> (57 AC)</p>
+    <p class="accent">Desempate: idade 60+ → Específicos → Discursiva → Port → Legislação → idade → jurado</p>
+  </div>
+
+  <div class="box box-callout rose">
+    <h3>⚠️ Pontos críticos do edital</h3>
+    <p><strong>Redação é ELIMINATÓRIA</strong> — 20-30 linhas, tema atualidade. Mínimo 12 de 20. Treine 1 redação por SEXTA-FEIRA.</p>
+    <p><strong>Não zerar nenhuma matéria:</strong> mínimo por disciplina. Português 1 pt + RLM 1 pt + Legislação 1 pt + cada específica 2 pts.</p>
+    <p><strong>Suas dificuldades · foco extra:</strong> RLM (5q gerais), Adm Pública (cai específico), Ferramentas/Informática (6 etapas DENSAS).</p>
+    <p><strong>Sua força — método reverso:</strong> questões primeiro, teoria sob demanda. Continue usando.</p>
+  </div>
+</div>
+
+<!-- ═══════ ESTRATÉGIA ═══════ -->
+<div class="panel" id="panel-estrategia">
+
+  <div class="box box-callout">
+    <h3>🎯 Sua estratégia para a ALECE 2026</h3>
+    <p><strong>1. Foco 100% ALECE:</strong> sem dispersão. 1 prova, 1 alvo — Técnico Legislativo, 90 vagas (30 imediatas + 60 CR).</p>
+    <p><strong>2. Método reverso (já funciona pra você):</strong> questões primeiro, teoria sob demanda. Continue usando — comprova-se eficaz.</p>
+    <p><strong>3. Foco extra nas suas 3 fraquezas:</strong> RLM, Adm Pública e Ferramentas/Informática — todas em DENSO no painel.</p>
+    <p><strong>4. Noite é seu ouro:</strong> após 20h30, 2-3h sólidas. Use esse tempo para o estudo profundo. Dia é micro-blocos.</p>
+    <p><strong>5. Redação SEXTA:</strong> eliminatória, mínimo 12 de 20. Não negocia.</p>
+  </div>
+
+  <div class="stitle"><div class="stitle-bar"></div>🔄 Estudo Reverso · seu método</div>
+
+  <div class="box box-callout sage">
+    <h3>Como aplicar em cada bloco</h3>
+    <p>1. Pegue 10-15 questões IDECAN/banca similar do tópico (sua plataforma paga)</p>
+    <p>2. Tente resolver SEM consultar (15-20 min)</p>
+    <p>3. Confira gabarito → veja comentário das erradas</p>
+    <p>4. SÓ AGORA leia teoria do ponto que errou (material gratuito)</p>
+    <p>5. Ficha-resumo do conceito-chave</p>
+    <p>6. 5 questões similares ao fim — fecha o ciclo</p>
+    <p class="accent">Você JÁ comprovou que esse método funciona. Continue!</p>
+  </div>
+
+  <div class="stitle"><div class="stitle-bar"></div>⚠️ Foco nas 3 dificuldades</div>
+
+  <div class="box box-callout rose">
+    <h3>🧮 RLM (Raciocínio Lógico) — 5q de 80</h3>
+    <p><strong>Onde está no painel:</strong> trilha "RLM" — todas etapas DENSO/MÉDIO.</p>
+    <p><strong>Quando estuda:</strong> aparece em <strong>4 noites por semana</strong> (Seg, Qua, Quinta e mais sessões).</p>
+    <p><strong>Como vencer:</strong> Lógica Proposicional é a base. Tabela-verdade. Negação. Quantificadores. Não pula essas etapas.</p>
+    <p><strong>Meta:</strong> 90h até a prova — 1h diária garantida.</p>
+  </div>
+
+  <div class="box box-callout rose" style="margin-top:14px;">
+    <h3>📊 Administração Pública ALECE — Específico peso 2</h3>
+    <p><strong>Onde está no painel:</strong> trilha "Adm Pública ALECE" — todas DENSO.</p>
+    <p><strong>Quando estuda:</strong> Ter+Qui+Sáb à noite (1h30 cada).</p>
+    <p><strong>Como vencer:</strong> POCC (Planejamento, Organização, Direção, Controle), Atos Administrativos, Lei 9.784 base.</p>
+    <p><strong>Meta:</strong> 50h até a prova.</p>
+  </div>
+
+  <div class="box box-callout rose" style="margin-top:14px;">
+    <h3>💻 Ferramentas/Informática — Específico peso 2</h3>
+    <p><strong>Onde está no painel:</strong> trilha "Ferramentas e Sistemas" — todas DENSO.</p>
+    <p><strong>Quando estuda:</strong> Qua+Qui à noite (1h30+1h).</p>
+    <p><strong>Como vencer:</strong> Foco em Word (formatação, sumário, mala direta), Excel (fórmulas básicas, PROCV, SE), e-mail institucional (CC × CCO).</p>
+    <p><strong>Meta:</strong> 40h até a prova.</p>
+  </div>
+
+  <div class="divider"><span class="divider-text">🛣 Linha do tempo até a prova</span></div>
+
+  <div class="box box-callout sage">
+    <h3>📅 Roteiro de 12 semanas (22/05 → 16/08)</h3>
+    <p><strong>Semana 1-4 (22/05 → 21/06):</strong> Bases. Português (classes, sintaxe), RLM (lógica proposicional + tabela-verdade), Legislação ALECE (9.826 + Regimento 751), Redação Oficial e Arquivologia. Inscrição até 22/06.</p>
+    <p><strong>Semana 5-8 (22/06 → 19/07):</strong> Aprofundamento. Adm Pública (DENSO), Ferramentas/Informática (DENSO), Processo Legislativo, Lei 17.091 + Códigos de Ética (Res 546, 783). Simulado semanal sábado.</p>
+    <p><strong>Semana 9-11 (20/07 → 08/08):</strong> Reta intermediária. Atendimento, Comunicação Institucional. Revisão RLM intensiva. Redação semanal.</p>
+    <p><strong>Semana RETA FINAL (10/08 → 16/08):</strong> 7 dias FINAIS — revisão geral. Foco nos pontos fracos. Simulados completos. Descanso bom 14-15-16.</p>
+  </div>
+
+</div>
+
+<!-- ═══════ ROTINA ═══════ -->
+<div class="panel" id="panel-rotina">
+  <div class="alert">
+    <strong>⏱ Sua rotina · 100% ALECE:</strong> 🌅 3h dia (fragmentadas, bb dormindo) + 🌙 2-3h noite após 20h30. Estudo reverso. Sexta = REDAÇÃO. <strong>Domingo = revisão estratégica</strong> (tarde) + descanso à noite.
+  </div>
+
+  <div class="stitle"><div class="stitle-bar"></div>☀️ BLOCO DIA — quando o bb dorme (2-3h)</div>
+  <div class="rotina-grid">
+    <div class="rot-card" style="border-top-color:var(--alece)">
+      <div class="rot-bloco" style="color:var(--alece)">Bloco 1 · brechas dia</div>
+      <div class="rot-mat">Português (questões)</div>
+      <div class="rot-h">1h (variável)</div>
+      <div class="rot-tip">Aproveitar sonecas. 10-15 questões IDECAN. Leitura interpretativa. Foco no celular se as duas estão acordadas.</div>
+    </div>
+    <div class="rot-card gold">
+      <div class="rot-bloco">Bloco 2 · brechas</div>
+      <div class="rot-mat">RLM (DIFICULDADE)</div>
+      <div class="rot-h">30-45 min</div>
+      <div class="rot-tip">App de questões enquanto bb mama/dorme. 5-8 questões. Foco em lógica proposicional na fase inicial.</div>
+    </div>
+  </div>
+
+  <div class="stitle"><div class="stitle-bar"></div>🌙 BLOCO NOITE — após 20h30 (FOCO PRINCIPAL · 2-3h)</div>
+  <div class="rotina-grid">
+    <div class="rot-card" style="border-top-color:var(--alece)">
+      <div class="rot-bloco" style="color:var(--alece)">Bloco 3 · 21h-22h30</div>
+      <div class="rot-mat">ALECE Específico (rotação)</div>
+      <div class="rot-h">1h30</div>
+      <div class="rot-tip">Redação Oficial, Arquivologia, Processo Legislativo, Adm Pública, Ferramentas, Atendimento — alternando por dia. Estudo reverso pesado.</div>
+    </div>
+    <div class="rot-card" style="border-top-color:var(--alece)">
+      <div class="rot-bloco" style="color:var(--alece)">Bloco 4 · 22h30-00h</div>
+      <div class="rot-mat">Foco em dificuldade (RLM/Adm/Ferr)</div>
+      <div class="rot-h">1h30</div>
+      <div class="rot-tip">É AQUI que você ataca suas 3 fraquezas. Não desperdice essa hora. Estudo concentrado.</div>
+    </div>
+    <div class="rot-card rose">
+      <div class="rot-bloco">Bloco 5 · final noite</div>
+      <div class="rot-mat">Português / Legislação</div>
+      <div class="rot-h">1h</div>
+      <div class="rot-tip">Bloco mais leve. Questões de Português, leitura de lei seca da legislação ALECE. Ficha-resumo final.</div>
+    </div>
+  </div>
+
+  <div class="stitle"><div class="stitle-bar"></div>📊 Distribuição semanal de horas</div>
+  <div class="box">
+    <p><strong>Total estimado por semana:</strong> ~30h (3h dia × 6 dias + 2h noite × 5-6 noites + 3h30 domingo tarde)</p>
+    <p><strong>🌅 DIA (Seg-Sáb):</strong> ~18h/semana — 3h fragmentadas (manhã após bb + brechas + tarde)</p>
+    <p><strong>🌙 NOITE (Seg-Sáb):</strong> ~10-12h/semana — foco principal após 20h30, mente clara</p>
+    <p><strong>🔁 DOMINGO TARDE:</strong> ~3h30 — revisão estratégica (Port + RLM + Legislação)</p>
+    <p><strong>Distribuição por matéria:</strong> Português ~10h, RLM ~7h, Legislação ~6h, Adm Pública ~3h, Ferramentas ~2h, Redação Oficial ~2h, Arquivologia ~1.5h, restante rotaciona.</p>
+  </div>
+
+  <div class="stitle"><div class="stitle-bar"></div>🛡 Regras de ouro</div>
+  <div class="box">
+    <p><strong>1. Português + RLM TODO DIA:</strong> sem rotação. Eliminatórias por mínimo de disciplina.</p>
+    <p><strong>2. SEXTA = redação obrigatória:</strong> 1 redação semanal. Eliminatória se &lt;12 de 20.</p>
+    <p><strong>3. Domingo é REVISÃO ESTRATÉGICA:</strong> 3h-3h30 à tarde (Port + RLM + Legislação). Edital aberto, prova em agosto — não tem como ficar 24h sem estudar. À noite, descansa real.</p>
+    <p><strong>4. Dormir até 23h30, no máximo:</strong> menos de 5h destrói memória. O bb acorda cedo.</p>
+    <p><strong>5. Plataforma paga é seu maior investimento:</strong> use TODO dia. Questões geram aprendizado real.</p>
+    <p><strong>6. Reta final (10/08 a 16/08):</strong> revisão geral + simulados. Sexta, sábado e domingo de descanso bom.</p>
+  </div>
+</div>
+
+<!-- ═══════ DIÁRIO ═══════ -->
+<div class="panel" id="panel-diario">
+  <div class="diario-grid">
+    <div class="form-card">
+      <h3>➕ Registrar sessão</h3>
+      <div class="fg"><label>Matéria</label><select id="selMat"></select></div>
+      <div class="fg"><label>Horas estudadas</label><input type="number" id="fHoras" min="0.25" max="10" step="0.25" value="1"></div>
+      <div class="fg">
+        <label>Confiança: <span class="conf-val" id="confLbl">3</span>/5</label>
+        <input type="range" id="fConf" min="1" max="5" value="3" oninput="document.getElementById('confLbl').textContent=this.value">
+        <div class="conf-row"><span>insegura</span><span>ótima!</span></div>
+      </div>
+      <div class="fg">
+        <label>O que estudei</label>
+        <textarea id="fNota" rows="3" placeholder="Ex: 10 questões IDECAN concordância verbal, revisão Art. 5º CF..."></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="addLog()" style="width:100%;margin-top:6px">✓ Registrar sessão</button>
+    </div>
+    <div class="form-card">
+      <h3>📅 Histórico</h3>
+      <div class="log-list" id="logList"><div class="empty">Nenhuma sessão ainda. Comece hoje!</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PROGRESSO ═══════ -->
+<div class="panel" id="panel-progresso">
+  <div class="stats-row" id="statsProgress"></div>
+
+  <div class="stitle"><div class="stitle-bar"></div>🎯 Progresso por concurso</div>
+  <div id="progDual" style="display:flex;flex-direction:column;gap:14px;margin-bottom:18px;"></div>
+
+  <div class="stitle"><div class="stitle-bar"></div>Progresso por matéria</div>
+  <div class="prog-grid" id="progGrid"></div>
+
+  <!-- BACKUP / RESTAURAR -->
+  <div class="stitle"><div class="stitle-bar"></div>💾 Backup do seu progresso</div>
+  <div class="box" style="border-left:4px solid var(--gold);">
+    <p style="margin-bottom:14px;font-size:0.9rem;color:var(--ink-soft);">
+      Seu progresso fica salvo neste navegador. <strong>Antes de abrir uma versão nova do painel</strong> (ou trocar de celular), faça o backup aqui e restaure depois. Assim você nunca perde o que já estudou.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <button class="btn btn-done" onclick="exportarBackup()">⬇️ Baixar backup</button>
+      <button class="btn" onclick="document.getElementById('importFile').click()">⬆️ Restaurar backup</button>
+      <input type="file" id="importFile" accept=".json,.txt" style="display:none" onchange="importarBackup(event)">
+    </div>
+    <div style="margin-top:14px;">
+      <div style="font-size:0.82rem;color:var(--ink-soft);margin-bottom:6px;">Ou copie/cole o texto do backup:</div>
+      <textarea id="backupText" style="width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px;font-family:monospace;font-size:0.75rem;resize:vertical;" placeholder="Cole aqui o texto do backup e clique em Restaurar do texto"></textarea>
+      <div style="display:flex;gap:10px;margin-top:8px;">
+        <button class="btn" onclick="copiarBackupTexto()">📋 Gerar texto do backup</button>
+        <button class="btn" onclick="restaurarDoTexto()">✓ Restaurar do texto</button>
+      </div>
+    </div>
+    <div id="backupMsg" style="margin-top:10px;font-size:0.85rem;"></div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<!-- ═══════ TIMER FLUTUANTE ═══════ -->
+<div class="timer-fixed" id="timerFixed">
+  <div class="timer-fixed-head">⏱ Sessão em andamento</div>
+  <div class="timer-fixed-mat" id="timerFixedMat">—</div>
+  <div class="timer-fixed-time" id="timerFixedTime">00:00:00</div>
+  <div class="timer-fixed-actions">
+    <button class="btn" onclick="pauseTimer()" id="timerPauseBtn">⏸ Pausar</button>
+    <button class="btn btn-done" onclick="stopTimer()">✓ Finalizar</button>
+  </div>
+</div>
+
+<!-- ═══════ MODAL DE FINALIZAÇÃO DE SESSÃO ═══════ -->
+<div class="modal-overlay" id="modalFim">
+  <div class="modal-card">
+    <div class="modal-titulo">Sessão concluída ✨</div>
+    <div class="modal-sub">Como foi? Avalie sua confiança no conteúdo estudado e (se quiser) deixe uma nota. Isso vai te ajudar a identificar pontos fracos depois.</div>
+
+    <div class="modal-tempo-final">
+      <div class="lbl" id="modalMatNome">—</div>
+      <div class="val" id="modalTempoFinal">0h 0min</div>
+    </div>
+
+    <div class="modal-form-row">
+      <label>Sua confiança no que estudou</label>
+      <div class="modal-stars" id="modalStars">
+        <button class="modal-star" data-c="1" onclick="setStar(1)">😵</button>
+        <button class="modal-star" data-c="2" onclick="setStar(2)">😕</button>
+        <button class="modal-star" data-c="3" onclick="setStar(3)">😐</button>
+        <button class="modal-star" data-c="4" onclick="setStar(4)">🙂</button>
+        <button class="modal-star" data-c="5" onclick="setStar(5)">😎</button>
+      </div>
+    </div>
+
+    <div class="modal-form-row">
+      <label>Nota (opcional) — o que estudou, o que ficou faltando</label>
+      <textarea id="modalNota" placeholder="Ex: Terminei interpretação. Errei 3 questões sobre inferência — revisar amanhã."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" onclick="cancelarFinal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="confirmarFinal()">✓ Registrar sessão</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// TRILHAS — baseadas no edital ALECE 2026 (IDECAN)
+// Conteúdo programático item por item
+// ═══════════════════════════════════════
+const TRILHAS = {
+  port: {
+    nome: 'Língua Portuguesa',
+    cor: 'var(--m-port)',
+    tipo: 'alece',
+    info: '🎯 ALECE 10q + critério desempate · ESSENCIAL',
+    etapas: [
+      // BASES
+      { titulo: 'Fonologia: letra, fonema, sílaba', desc: '<strong>BASE absoluta.</strong> Diferença entre letra (símbolo gráfico) e fonema (som). Encontros vocálicos (ditongo, tritongo, hiato), encontros consonantais, dígrafos. Classificação de sílabas (tônica, átona).', alerta: 'IDECAN raramente cobra direto, mas é pré-requisito para acentuação.', tempo: '2 dias', meta: 'Identificar fonemas e sílabas com segurança' },
+      { titulo: 'Ortografia oficial', desc: '<strong>Edital cita literalmente.</strong> Novo Acordo Ortográfico. Uso de hífen, trema, X/CH, S/Z, G/J. Palavras parônimas e homônimas mais cobradas.', alerta: 'IDECAN cobra muito "mau" vs "mal", "demais" vs "de mais", "afim" vs "a fim". Faça lista própria.', tempo: '3 dias', meta: 'Dominar regras + 30 questões IDECAN' },
+      { titulo: 'Acentuação gráfica', desc: '<strong>Edital cita literalmente.</strong> Regras: monossílabas tônicas, oxítonas, paroxítonas, proparoxítonas. Ditongos abertos, hiatos. Acentos diferenciais (pôr, pôde).', alerta: 'O Novo Acordo eliminou alguns acentos. Saber QUAIS sumiram cai em prova.', tempo: '3 dias', meta: 'Acentuar qualquer palavra + 30 questões' },
+
+      // CLASSES GRAMATICAIS
+      { titulo: 'Substantivo + Flexão nominal', desc: '<strong>Edital cita "Flexão nominal".</strong> Tipos (próprio, comum, concreto, abstrato, coletivo). <strong>Flexão de gênero</strong> (masculino/feminino — substantivos epicenos, comuns de 2 gêneros, sobrecomuns). <strong>Flexão de número</strong> (singular/plural, substantivos compostos). <strong>Flexão de grau</strong> (aumentativo/diminutivo, sintético/analítico).', alerta: 'Substantivos compostos: como pluralizar é decoreba clássica (guarda-chuva → guarda-chuvas; pé-de-moleque → pés-de-moleque). Base para concordância nominal mais à frente.', tempo: '3 dias', meta: '30 questões + reconhecer no texto' },
+      { titulo: 'Adjetivo, artigo, numeral', desc: 'Adjetivo: classificação, flexões, locuções adjetivas. Artigo definido/indefinido. Numeral (cardinal, ordinal, multiplicativo, fracionário).', alerta: 'Saber concordar com substantivo é essencial.', tempo: '2 dias', meta: '25 questões' },
+      { titulo: 'Pronomes (todos os tipos)', desc: '<strong>CRÍTICO para IDECAN.</strong> Pessoais (caso reto e oblíquo), possessivos, demonstrativos, indefinidos, interrogativos, relativos. Pronomes relativos (que, quem, cujo, onde) são MUITO cobrados.', alerta: 'Edital cita "Pronomes" como tópico específico. Cai SEMPRE em prova IDECAN.', tempo: '5-7 dias', meta: '50 questões + tabela de pronomes' },
+      { titulo: 'Verbo: estrutura, flexão verbal e conjugação', desc: '<strong>Edital cita "Flexão verbal".</strong> Estrutura (radical, vogal temática, desinências modo-temporais e número-pessoais). <strong>Flexão verbal</strong>: modo (indicativo, subjuntivo, imperativo), tempo (presente, pretérito, futuro), número (singular/plural), pessoa (1ª, 2ª, 3ª). Conjugação dos verbos regulares (1ª, 2ª, 3ª conjugação).', alerta: 'Etapa densa, leva tempo. Não pule — conjugação é base para tudo que vem depois.', tempo: '7-10 dias', meta: 'Conjugar regulares automaticamente + 50 questões' },
+      { titulo: 'Verbos irregulares + formas nominais + vozes', desc: '<strong>Edital cita "Vozes do verbo" e "Correlação de tempos e modos verbais".</strong> Verbos irregulares mais cobrados (ser, estar, ter, haver, ir, vir, ver, pôr, fazer, dizer). Formas nominais: infinitivo, gerúndio, particípio. Vozes ativa, passiva, reflexiva.', alerta: 'Conversão ativa↔passiva é cobradíssima pela IDECAN.', tempo: '4-5 dias', meta: '40 questões + tabela dos irregulares' },
+      { titulo: 'Advérbio, preposição, conjunção, interjeição', desc: 'Advérbios (tempo, lugar, modo, intensidade) + locuções adverbiais. Preposições e combinações/contrações. Conjunções coordenativas e subordinativas.', alerta: 'Edital cita "Conectivos" como tópico — são as conjunções. Memorize as adversativas e conclusivas.', tempo: '4 dias', meta: '40 questões + classificar conjunções' },
+
+      // SINTAXE
+      { titulo: 'Sintaxe: termos essenciais (sujeito e predicado)', desc: '<strong>Edital cita "Morfossintaxe".</strong> Tipos de sujeito (simples, composto, oculto, indeterminado, oração sem sujeito). Tipos de predicado (verbal, nominal, verbo-nominal). Predicativo do sujeito e do objeto.', alerta: 'BASE PARA CONCORDÂNCIA — sem isso, é impossível.', tempo: '5-7 dias', meta: 'Identificar sujeito e predicado em qualquer frase + 50 questões' },
+      { titulo: 'Sintaxe: termos integrantes (OD, OI, CN)', desc: 'Objeto direto e indireto. Diferença pela preposição. Complemento nominal. Agente da passiva.', alerta: 'BASE PARA REGÊNCIA. Sem isso, regência fica impossível. CN × adjunto adnominal é PEGADINHA clássica IDECAN.', tempo: '5-7 dias', meta: 'Identificar OD/OI/CN com segurança + 50 questões' },
+      { titulo: 'Sintaxe: termos acessórios (adjuntos e aposto)', desc: 'Adjunto adnominal vs Complemento nominal. Adjunto adverbial. Aposto. Vocativo.', alerta: 'A distinção adjunto adnominal × complemento nominal é PEGADINHA clássica da IDECAN.', tempo: '4 dias', meta: '40 questões com foco na distinção' },
+      { titulo: 'Período composto por coordenação', desc: '<strong>Edital cita "Coordenação e subordinação".</strong> Orações coordenadas: sindéticas (com conjunção) e assindéticas. Classificação das sindéticas.', alerta: 'Identificar tipo de conjunção é metade do caminho.', tempo: '3 dias', meta: '30 questões' },
+      { titulo: 'Período composto por subordinação', desc: 'Orações subordinadas substantivas (subjetiva, objetiva direta/indireta, predicativa, completiva nominal, apositiva). Adjetivas (restritiva e explicativa — IMPACTAM PONTUAÇÃO). Adverbiais (causal, condicional, comparativa, concessiva, final etc).', alerta: 'Subordinada adjetiva restritiva NÃO leva vírgula. Explicativa SIM. Cai SEMPRE.', tempo: '7-10 dias', meta: 'Classificar qualquer oração subordinada + 60 questões' },
+
+      // APLICAÇÕES
+      { titulo: 'Concordância Verbal', desc: '<strong>Edital cita literalmente.</strong> Regra geral (verbo concorda com sujeito). Casos especiais: sujeito composto, posposto, expressões partitivas, pronomes relativos (que/quem), com %, com nomes próprios plurais.', alerta: 'AGORA com base de sujeito firme, você domina. Tabela de exceções é essencial.', tempo: '6-8 dias', meta: 'Tabela + 80 questões' },
+      { titulo: 'Concordância Nominal', desc: '<strong>Edital cita literalmente.</strong> Adjetivo concorda com substantivo. Casos especiais (anexo, obrigado, mesmo, próprio, meio, bastante, leso, todo). Expressões: é proibido, é necessário.', alerta: '"Meio-dia e meia" / "estou meio cansada" → variações com armadilhas.', tempo: '4 dias', meta: '50 questões' },
+      { titulo: 'Regência Verbal', desc: '<strong>Edital cita literalmente.</strong> AGORA com OD/OI dominados. Verbos transitivos diretos, indiretos, dir. e ind., intransitivos. Verbos de REGÊNCIA DUPLA (armadilha IDECAN): assistir, visar, implicar, esquecer, lembrar, namorar, querer, aspirar.', alerta: 'Tabela de verbos duplos é OBRIGATÓRIA. IDECAN tira questões direto dela.', tempo: '5-7 dias', meta: 'Tabela de verbos duplos + 60 questões' },
+      { titulo: 'Regência Nominal', desc: '<strong>Edital cita literalmente.</strong> Substantivos, adjetivos e advérbios que exigem preposição. Acesso a, ânsia de/por, aversão a, atentado a/contra.', alerta: 'Lista dos mais cobrados existe — busque "regência nominal concursos".', tempo: '3 dias', meta: '40 questões' },
+      { titulo: 'Crase', desc: '<strong>Edital cita "Emprego do sinal indicativo de crase".</strong> Crase = a + a. Regra geral. Casos obrigatórios (antes de horas determinadas, locuções femininas, "à moda de"). Casos proibidos. Crase facultativa.', alerta: 'Macete da troca por "ao" funciona em 90% dos casos. Decore os outros 10%.', tempo: '4 dias', meta: '50 questões' },
+      { titulo: 'Pontuação', desc: '<strong>Edital cita literalmente.</strong> Vírgula (8 casos principais). Ponto-e-vírgula. Dois-pontos. Aspas. Travessão. Reticências.', alerta: 'Vírgula em adjunto adverbial deslocado, aposto explicativo, oração intercalada. IDECAN cobra em quase TODA prova.', tempo: '5-7 dias', meta: '60 questões + tabela de regras da vírgula' },
+      { titulo: 'Colocação pronominal', desc: 'Próclise (antes do verbo), ênclise (depois), mesóclise (no meio). Próclise obrigatória (palavras atrativas: negação, advérbios, pronomes relativos, conjunções subordinativas).', alerta: 'Edital não cita explicitamente mas IDECAN cobra. Mesóclise no futuro do presente e pretérito.', tempo: '3 dias', meta: '30 questões' },
+
+      // INTERPRETAÇÃO E DEMAIS
+      { titulo: 'Compreensão e interpretação de textos', desc: '<strong>Edital cita literalmente.</strong> Tipos textuais, intenção do autor, ideias principais e secundárias, inferência, pressupostos. Relação do texto com seu contexto histórico (edital cita).', alerta: 'AGORA fica natural depois de dominar gramática. Pratique com textos de concurso.', tempo: '5-7 dias', meta: '80 questões de interpretação' },
+      { titulo: 'Denotação e conotação + Figuras de linguagem', desc: '<strong>Edital cita literalmente ambos.</strong> Denotação (sentido literal) vs conotação (sentido figurado). Figuras: metáfora, metonímia, antítese, paradoxo, ironia, hipérbole, eufemismo.', alerta: 'Aparece em interpretação. Cai pouco mas é fácil de pontuar.', tempo: '2 dias', meta: '30 questões' },
+      { titulo: 'Discurso direto, indireto e indireto livre + Intertextualidade', desc: '<strong>Edital cita literalmente.</strong> Conversão entre tipos de discurso. Intertextualidade: relação entre textos.', alerta: 'Conversão de discurso direto para indireto exige mudança de tempo verbal e pronomes.', tempo: '2 dias', meta: '25 questões' },
+      { titulo: 'Sinonímia, antonímia + Formação de palavras', desc: '<strong>Edital cita "Sinonímia e antonímia" e "Elementos estruturais e processos de formação de palavras".</strong> Derivação (prefixal, sufixal, parassintética). Composição. Hibridismo. Reduções, siglas.', alerta: 'Polissemia (várias significações) é tema IDECAN.', tempo: '2-3 dias', meta: '30 questões' },
+      { titulo: 'Redação: confronto de frases corretas e incorretas', desc: '<strong>Edital cita literalmente.</strong> Reorganização de orações e períodos. Equivalência e transformação de estruturas. Reescritura mantendo sentido.', alerta: 'IDECAN costuma cobrar "qual reescritura mantém o sentido?". Cuidado com paráfrases que mudam pontos sutis.', tempo: '4 dias', meta: '40 questões' },
+
+      // DISCURSIVA
+      { titulo: 'Discursiva: estrutura da dissertação argumentativa', desc: '<strong>ELIMINATÓRIA.</strong> Estrutura: introdução (contextualização + tese) → 2 desenvolvimentos com argumentos sólidos → conclusão com proposta. Aprenda a estrutura ANTES do tema.', alerta: 'Nota zero se: fugir ao tema, escrever menos de 7 linhas, identificar-se, copiar trechos da prova.', tempo: '5 dias', meta: '3 redações modelo + leitura do edital item 12' },
+      { titulo: 'Discursiva: prática semanal', desc: '<strong>1 redação por semana</strong> até a prova. Tema livre (atualidades, problemas sociais, ética, tecnologia). 20-30 linhas. Autocorreção rigorosa: tema (recorte temático + interpretação crítica + progressão textual) e norma-padrão (propriedade vocabular + coesão + morfossintaxe).', alerta: 'NÃO faça recuo de parágrafo com sinal. Não use rasura. Letra legível.', tempo: 'até a prova', meta: '12+ redações antes de 16/08/2026' },
+    ]
+  },
+
+  rlm: {
+    nome: 'Raciocínio Lógico-Matemático',
+    cor: 'var(--m-rlm)',
+    tipo: 'alece',
+    info: '⚠️ DIFICULDADE · ALECE 5q · estudar TODO DIA · método reverso',
+    etapas: [
+      { titulo: 'Lógica Proposicional: proposições e conectivos', desc: '<strong>BASE.</strong> Proposição simples e composta. Conectivos: conjunção (e), disjunção (ou), condicional (se...então), bicondicional, negação. Símbolos básicos.', alerta: 'NÃO AVANCE sem dominar isso. É o fundamento de tudo em RLM lógica.', tempo: '4-5 dias', meta: '20 questões básicas' },
+      { titulo: 'Tabela-verdade', desc: 'Construir tabela-verdade de proposições compostas. Saber quando uma proposição composta é V ou F para cada combinação.', alerta: 'Pratique até virar automático. 4 linhas para 2 proposições, 8 para 3, 16 para 4.', tempo: '3-4 dias', meta: 'Construir 20 tabelas' },
+      { titulo: 'Negação de proposições', desc: 'Negar conjunção, disjunção, condicional. Leis De Morgan: ~(p∧q) = ~p∨~q. Negação de "se p então q" = "p e não q".', alerta: 'MUITO COBRADO em concursos. Decore as 4 negações principais.', tempo: '3 dias', meta: '30 questões' },
+      { titulo: 'Equivalências lógicas', desc: 'Equivalências de "se...então": contrapositiva (se ~q então ~p). Equivalência do bicondicional. Tautologia, contradição, contingência.', alerta: 'IDECAN cobra diretamente.', tempo: '3 dias', meta: '30 questões' },
+      { titulo: 'Argumentos válidos: Modus Ponens e Tollens', desc: 'Modus Ponens (afirma o antecedente → afirma o consequente). Modus Tollens (nega o consequente → nega o antecedente). Como reconhecer argumento válido vs inválido.', alerta: 'Edital cita "compreensão do processo lógico que conduz a conclusões determinadas".', tempo: '3 dias', meta: '25 questões' },
+      { titulo: 'Lógica de quantificadores', desc: '<strong>Edital cita "Estrutura lógica de relações arbitrárias entre pessoas, lugares, objetos ou eventos fictícios".</strong> Todo, algum, nenhum. Negação: "todo X é Y" = "algum X não é Y". Diagramas de Venn.', alerta: 'Diagramas de Venn resolvem 90% das questões — pratique muito.', tempo: '3 dias', meta: '20 questões' },
+      { titulo: 'Sequências e padrões', desc: '<strong>Edital cita "raciocínio sequencial".</strong> Séries numéricas (PA, PG, alternadas), séries alfanuméricas, séries de figuras.', alerta: 'NÃO DECORE — entenda o mecanismo de variação. Cada questão tem um padrão único.', tempo: '4 dias', meta: '40 questões' },
+      { titulo: 'Raciocínio analítico e situacional', desc: '<strong>Edital cita "deduzir novas informações das relações fornecidas".</strong> Tabelas lógicas (quem mora onde, quem tem qual profissão). Ordenação. Verdade/mentira.', alerta: 'Resolva escrevendo as deduções — externaliza o raciocínio. Demora mas funciona.', tempo: '5-7 dias', meta: '30 problemas' },
+      { titulo: 'Raciocínio verbal · analogias, classificações', desc: '<strong>Edital cita literalmente "raciocínio verbal".</strong> Analogias verbais (A está para B assim como C está para D). Classificações e categorias. Antônimos e sinônimos contextuais. Relações de parte-todo, causa-efeito. Compreensão e elaboração da lógica das situações por meio do raciocínio verbal.', alerta: 'Pouco cobrado em concursos, mas o edital cita expressamente — não pule. Aparecem em provas IDECAN com frequência.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Orientação espacial e temporal + formação de conceitos', desc: '<strong>Edital cita literalmente.</strong> Problemas com tempo, espaço, calendários, idades. Discriminação de elementos.', alerta: 'Pratique com exercícios variados.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Matemática básica: operações, frações, decimais', desc: 'Operações com inteiros, frações, decimais. MMC e MDC.', alerta: 'Calculadora? Não pode na prova. Pratique cálculo mental.', tempo: '3 dias', meta: '30 questões' },
+      { titulo: 'Porcentagem', desc: '<strong>Edital cita literalmente.</strong> MAIS COBRADA. Cálculo direto, aumentos sucessivos, descontos, lucro/prejuízo.', alerta: 'Sem decorar fórmulas — entenda 10% = 0,10 e o resto sai.', tempo: '4 dias', meta: '50 questões' },
+      { titulo: 'Regra de três simples e composta', desc: '<strong>Edital cita "problemas envolvendo regra de três simples, cálculos de porcentagem, acréscimos e descontos".</strong> Direta e inversa. Simples e composta.', alerta: 'Aparece em quase toda prova.', tempo: '4 dias', meta: '40 questões' },
+      { titulo: 'Estatística: medidas de tendência central', desc: '<strong>Edital cita literalmente: "moda, mediana, média aritmética simples e ponderada".</strong>', alerta: 'Diferença média simples × ponderada é cobrada. Estude com calma.', tempo: '3 dias', meta: '30 questões' },
+      { titulo: 'Estatística: medidas de dispersão', desc: '<strong>Edital cita literalmente: "desvio médio, amplitude, variância, desvio padrão".</strong>', alerta: 'Fórmulas devem ser entendidas, não decoradas. Pratique cálculos.', tempo: '3 dias', meta: '20 questões' },
+      { titulo: 'Leitura e interpretação de gráficos e tabelas', desc: '<strong>Edital cita literalmente: "histogramas, setores, infográficos".</strong>', alerta: 'Geralmente questões fáceis — não erre. Cuidado com escalas.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Simulados cronometrados', desc: 'Blocos de 10 questões em 15 min, depois 15 em 22 min, depois 20 em 30. Classifique cada erro: conta errada / enunciado mal lido / conceito não dominado.', alerta: 'Reforce o tipo de erro mais frequente. Pontue o que volta.', tempo: 'até a prova', meta: 'simulado diário' },
+    ]
+  },
+
+  leg: {
+    nome: 'Legislação e Ética + Legislação ALECE',
+    cor: 'var(--m-leg)',
+    tipo: 'alece',
+    info: '🎯 LGPD + LAI + Ética + Princípios LIMPE + 7 itens internos ALECE · 21 etapas DENSO',
+    etapas: [
+      // ─── 1.1 LGPD — LEI 13.709/2018 ───
+      { titulo: 'LGPD · Lei 13.709/2018 (Lei Geral de Proteção de Dados)', desc: '<strong>Edital 1.1: literalidade.</strong> Fundamentos e princípios da proteção de dados. Conceitos (dado pessoal, dado sensível, titular, controlador, operador, encarregado/DPO). Bases legais para tratamento (consentimento, obrigação legal, execução de políticas públicas, interesse legítimo). Direitos do titular. Transferência internacional. ANPD. Sanções administrativas.', alerta: 'IDECAN cobra CONCEITOS (diferença controlador × operador) e BASES LEGAIS. Decorar as 10 hipóteses do Art. 7.', tempo: '4 dias', meta: 'Leitura + 30 questões' },
+
+      // ─── 1.2 LAI — LEI 12.527/2011 ───
+      { titulo: 'LAI · Lei 12.527/2011 (Lei de Acesso à Informação)', desc: '<strong>Edital 1.2: literalidade.</strong> Diretrizes e abrangência. Acesso à informação: transparência ativa × passiva. Informações sigilosas (classificação: reservada 5 anos, secreta 15 anos, ultrassecreta 25 anos). Informações pessoais (100 anos). Prazos de resposta (20 dias + 10 prorrogáveis). Responsabilidade de agentes públicos. Recursos.', alerta: 'DECORAR PRAZOS de sigilo (5/15/25/100 anos) e de resposta (20+10 dias). IDECAN cobra literalidade.', tempo: '3 dias', meta: 'Leitura + 25 questões' },
+
+      // ─── 2. ÉTICA NO SERVIÇO PÚBLICO ───
+      { titulo: 'Ética no Serviço Público · conceitos fundamentais', desc: '<strong>Edital 2.1 a 2.4: literalidade.</strong> Ética e função pública. Ética × moral: definição e distinção. Valores: virtude, honestidade, integridade, decoro e zelo no serviço público — conceitos de cada um. Ética, democracia, cidadania e o papel do servidor público.', alerta: 'IDECAN cobra DIFERENÇA entre ética × moral. Decorar conceito de cada valor (virtude, integridade, decoro, zelo).', tempo: '3 dias', meta: '25 questões' },
+
+      // ─── 3. PRINCÍPIOS DA ADM PÚBLICA ───
+      { titulo: 'Princípios da Adm Pública · LIMPE aplicado à ética', desc: '<strong>Edital 3.1 e 3.2: literalidade.</strong> Princípios da Administração Pública: Legalidade, Impessoalidade, Moralidade, Publicidade e Eficiência (LIMPE). Definição de cada um. Aplicação dos princípios éticos na Administração Pública. Supremacia do interesse público. Probidade administrativa.', alerta: 'LIMPE é cobrado em TODA prova de concurso. Decorar definição e APLICAÇÃO prática de cada princípio. Diferença moralidade × legalidade.', tempo: '3 dias', meta: '30 questões' },
+
+      // ─── 4.1 CONSTITUIÇÃO DO ESTADO DO CEARÁ ───
+      { titulo: 'Constituição CE: Poder Legislativo Estadual', desc: '<strong>Edital 4.1: literalidade.</strong> Disposições da Constituição do Estado do Ceará relativas ao Poder Legislativo Estadual. Organização, competências e funcionamento. Estrutura da ALECE no texto constitucional. Atribuições privativas. Processo legislativo estadual (CF + Const CE). Imunidades parlamentares.', alerta: 'IDECAN cobra literalidade. Buscar texto integral da Constituição do CE — artigos sobre Poder Legislativo.', tempo: '5 dias', meta: 'Leitura integral + 35 questões' },
+
+      // ─── 4.2 LEI 9.826/74 — ESTATUTO DOS SERVIDORES ───
+      { titulo: 'Lei 9.826/74: Disposições preliminares e Provimento', desc: '<strong>Edital 4.2: literalidade.</strong> Estatuto dos Funcionários Públicos Civis do Estado do Ceará. Conceitos, classificação, formas de provimento (nomeação, promoção, readaptação, reversão, aproveitamento, reintegração, recondução). Concurso público.', alerta: 'CRÍTICO. IDECAN cobra literalidade da lei estadual. Lei seca.', tempo: '3 dias', meta: 'Leitura + 30 questões' },
+      { titulo: 'Lei 9.826/74: Posse, exercício e estágio probatório', desc: '<strong>Edital 4.2.</strong> Prazos de posse (30 dias) e exercício (15 dias). Estágio probatório. Avaliação de desempenho. Estabilidade.', alerta: 'Decorar PRAZOS — IDECAN/IDECAN cobram numericamente.', tempo: '2 dias', meta: '25 questões' },
+      { titulo: 'Lei 9.826/74: Direitos, vantagens e licenças', desc: '<strong>Edital 4.2.</strong> Vencimento, vantagens, gratificações, adicionais. Tipos de licença (saúde, gestante, paternidade, capacitação, interesse particular, atividade política). Prazos. Com/sem remuneração.', alerta: 'Tabela de licenças × duração × remuneração é decoreba.', tempo: '4 dias', meta: '35 questões' },
+      { titulo: 'Lei 9.826/74: Deveres, proibições e regime disciplinar', desc: '<strong>Edital 4.2.</strong> Deveres do servidor. Proibições. Responsabilidade civil/penal/administrativa. Penalidades: advertência, suspensão, demissão, cassação de aposentadoria, destituição. Processo administrativo disciplinar (PAD). Sindicância.', alerta: 'Tabela de penalidades × infrações × prazos. Foco em PAD.', tempo: '4 dias', meta: '35 questões' },
+      { titulo: 'Lei 9.826/74: Vacância, aposentadoria e disposições finais', desc: '<strong>Edital 4.2.</strong> Formas de vacância (exoneração, demissão, aposentadoria, falecimento, posse em cargo inacumulável). Tipos de aposentadoria. Disposições gerais e transitórias.', alerta: 'Lei seca — IDECAN cobra literalidade.', tempo: '3 dias', meta: '25 questões' },
+
+      // ─── 4.3 LEI 17.091/2019 — PLANO DE CARGOS ALECE ───
+      { titulo: 'Lei 17.091/2019: Plano de Cargos da ALECE - estrutura', desc: '<strong>Edital 4.3: literalidade.</strong> Plano de Cargos, Carreira e Remuneração da ALECE. Quadro de pessoal. Estrutura de cargos efetivos e comissionados. Atribuições do cargo de Técnico Legislativo. Requisitos de provimento.', alerta: '🆕 ITEM NOVO. Lei específica da ALECE — buscar texto integral. IDECAN COBRA.', tempo: '3 dias', meta: 'Leitura + 25 questões' },
+      { titulo: 'Lei 17.091/2019: Progressão, promoção e remuneração', desc: '<strong>Edital 4.3.</strong> Progressão funcional. Promoção. Remuneração: vencimento básico + gratificações + vantagens específicas. Adicionais (qualificação, titulação, desempenho). Tabela salarial.', alerta: 'Tema decoreba. Estude critérios de promoção/progressão.', tempo: '3 dias', meta: '20 questões' },
+      { titulo: 'Lei 17.091/2019: Avaliação de desempenho e capacitação', desc: '<strong>Edital 4.3.</strong> Critérios de avaliação. Periodicidade. Política de capacitação. Direitos e deveres específicos do servidor da ALECE.', alerta: 'Disposições específicas do plano da ALECE.', tempo: '2 dias', meta: '15 questões' },
+
+      // ─── 4.4 RESOLUÇÃO 546/2006 — CÓDIGO DE ÉTICA E DECORO PARLAMENTAR ───
+      { titulo: 'Resolução 546/2006: Código de Ética e Decoro Parlamentar', desc: '<strong>Edital 4.4: literalidade.</strong> Código de Ética e Decoro Parlamentar da ALECE. Deveres dos deputados estaduais. Vedações. Faltas éticas. Procedimentos disciplinares parlamentares. Conselho de Ética. Sanções (advertência, censura, suspensão, perda de mandato).', alerta: '🆕 ITEM NOVO. Foca no PROCEDIMENTO disciplinar parlamentar. IDECAN ama cobrar.', tempo: '3 dias', meta: 'Leitura + 25 questões' },
+      { titulo: 'Resolução 546/2006: Conselho de Ética e tramitação', desc: '<strong>Edital 4.4.</strong> Composição do Conselho de Ética. Competências. Trâmite de denúncias éticas. Prazos. Quórum. Recursos. Penalidades aplicáveis ao parlamentar.', alerta: 'Procedimento detalhado. Estude o fluxo passo a passo.', tempo: '2 dias', meta: '15 questões' },
+
+      // ─── 4.5 RESOLUÇÃO 751/2022 — REGIMENTO INTERNO ───
+      { titulo: 'Res. 751/2022 (Regimento ALECE): Estrutura e Mesa Diretora', desc: '<strong>Edital 4.5: literalidade.</strong> Regimento Interno da Assembleia Legislativa do Estado do Ceará. Organização: Mesa Diretora (Presidente, 1º e 2º Vice-Presidentes, Secretários). Eleição. Atribuições. Sessão preparatória.', alerta: 'TEMA CRÍTICO. IDECAN cobra TUDO do regimento. Buscar texto integral.', tempo: '4 dias', meta: 'Leitura + 30 questões' },
+      { titulo: 'Res. 751/2022: Plenário, Comissões e Lideranças', desc: '<strong>Edital 4.5.</strong> Plenário: composição e funcionamento. Comissões permanentes e temporárias. Lideranças (de bancada, de bloco, do governo, da oposição). Bancadas e blocos parlamentares.', alerta: 'Diferenças entre tipos de Comissão e atribuições — decoreba.', tempo: '4 dias', meta: '30 questões' },
+      { titulo: 'Res. 751/2022: Processo Legislativo e Tramitação', desc: '<strong>Edital 4.5.</strong> Espécies normativas (EC, LC, LO, decreto legislativo, resolução). Iniciativa, discussão, votação. Quóruns (maioria simples, absoluta, qualificada de 2/3, 3/5). Sanção, veto, promulgação, publicação. Sessões (ordinária, extraordinária, solene, secreta). Pauta.', alerta: 'CRUZA com Processo Legislativo (específico). Estude junto.', tempo: '5 dias', meta: '40 questões' },
+      { titulo: 'Res. 751/2022: Proposições e Recursos', desc: '<strong>Edital 4.5.</strong> Tipos de proposição (PL, emenda, requerimento, indicação, moção, substitutivo). Tramitação detalhada. Recursos regimentais. Questões de ordem. Apreciação preferencial e urgência.', alerta: 'Detalhes regimentais — IDECAN gosta de pegar.', tempo: '3 dias', meta: '25 questões' },
+
+      // ─── 4.6 RESOLUÇÃO 780/2025 — ESTRUTURA ORGANIZACIONAL ───
+      { titulo: 'Res. 780/2025: Estrutura Organizacional da ALECE', desc: '<strong>Edital 4.6: literalidade.</strong> Organograma atualizado da ALECE. Diretorias (Geral, Legislativa, Administrativa, Financeira). Secretarias. Unidades administrativas. Hierarquia. Atribuições por unidade.', alerta: '🆕 RESOLUÇÃO RECENTE (2025). Buscar PDF oficial atualizado da ALECE.', tempo: '3 dias', meta: 'Leitura + 20 questões' },
+
+      // ─── 4.7 RESOLUÇÃO 783/2026 — CÓDIGO DE ÉTICA SERVIDORES ───
+      { titulo: 'Res. 783/2026: Código de Ética e Conduta dos Servidores', desc: '<strong>Edital 4.7: literalidade.</strong> Código de Ética dos servidores da ALECE. Princípios éticos (legalidade, moralidade, integridade, lealdade, eficiência). Deveres específicos do servidor. Vedações. Comitê de Ética. Procedimento de apuração. Sanções éticas.', alerta: '🆕 RESOLUÇÃO NOVA (2026). Foco em DEVERES e VEDAÇÕES. IDECAN cobra MUITO.', tempo: '3 dias', meta: 'Leitura + 25 questões' },
+    ]
+  },
+
+  // ═══════════════════════════════════════════════
+  // TRILHAS EXCLUSIVAS DA ALECE (6 novas)
+  // ═══════════════════════════════════════════════
+  redoff: {
+    nome: 'Redação Oficial e Revisão de Documentos',
+    cor: 'var(--m-redoff)',
+    tipo: 'alece',
+    info: '🌅 ALECE apenas · Específico peso 2 · 12 etapas item por item do edital',
+    etapas: [
+      { titulo: 'Características da Redação Oficial', desc: '<strong>Edital cita literalmente cada uma.</strong> Clareza · Precisão · Concisão · Impessoalidade · Formalidade · Uniformidade · Objetividade. Princípios e técnicas. Manual de Redação da Presidência da República como referência.', alerta: 'IDECAN cobra DEFINIÇÃO de cada característica. Clareza ≠ precisão ≠ concisão.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Ata · finalidade, estrutura e linguagem', desc: '<strong>Edital cita literalmente.</strong> Documento que registra fatos, decisões e ocorrências de reunião. Estrutura: cabeçalho, abertura, corpo, encerramento, assinatura. Linguagem objetiva, narrativa, em tempo passado.', alerta: 'Atas legislativas são CRÍTICAS para Técnico Legislativo. Você vai redigir no cargo.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Memorando · estrutura e elaboração', desc: '<strong>Edital cita literalmente.</strong> Comunicação interna entre unidades da mesma instituição. Numeração, data, destinatário, assunto, texto, fecho, assinatura. Manual de Redação Oficial (atualizado 2018) renomeia para "Ofício" em comunicações entre órgãos.', alerta: 'IDECAN cobra estrutura formal — decorar campos obrigatórios.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Ofício · endereçamento, assunto, corpo, fecho, assinatura', desc: '<strong>Edital cita literalmente cada parte.</strong> Comunicação oficial externa ou interna. Estrutura completa: timbre, número, local e data, endereçamento (vocativo + cargo), assunto, corpo (introdução-desenvolvimento-conclusão), fecho ("Atenciosamente" para iguais/inferiores, "Respeitosamente" para superiores), assinatura com nome e cargo.', alerta: 'PROVA CRÍTICA. Fecho errado mata a questão. Forma vocativa varia conforme autoridade.', tempo: '3 dias', meta: '30 questões' },
+      { titulo: 'Portarias, atos, circulares e cartas', desc: '<strong>Edital cita literalmente.</strong> Portaria: ato administrativo do superior contendo instruções, normas, designações. Ato: termo genérico. Circular: comunicação repetida para múltiplos destinatários. Carta: correspondência mais formal.', alerta: 'Diferença entre os 4 tipos cai em IDECAN.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Comunicações institucionais · interna × externa · e-mails', desc: '<strong>Edital cita literalmente.</strong> Comunicação interna (entre setores) vs externa (com público/órgãos). E-mails institucionais: assunto claro, cordialidade, identificação completa, assinatura padrão. Memorandos eletrônicos: formato digital com mesmo rigor.', alerta: 'Atendimento ao público se cruza com este tema.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Revisão gramatical aplicada à redação oficial', desc: '<strong>Edital cita literalmente.</strong> Ortografia, acentuação, pontuação, concordância, regência, crase aplicadas a textos formais. Erros comuns em documentos oficiais.', alerta: 'Cruza diretamente com Português — você JÁ está estudando isso.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Vícios de linguagem em documentos oficiais', desc: '<strong>Edital cita literalmente.</strong> Redundância (repetição desnecessária: "elo de ligação"). Prolixidade (excesso de palavras). Ambiguidade (duplo sentido). Impropriedades textuais (palavra usada fora do significado).', alerta: 'Detectar vício em frase pronta é tema CLÁSSICO IDECAN.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Padronização documental', desc: '<strong>Edital cita literalmente.</strong> Numeração, timbre, campos obrigatórios, formatação. Padrão Ofício do Manual de Redação Oficial. Espaçamento, fonte, margens, paragrafação.', alerta: 'Cai questão sobre formato padrão.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Manual de Redação Oficial da Presidência (panorama)', desc: 'Estrutura do Manual: pronomes de tratamento, fechos, padrão de comunicação oficial. Aplicação às esferas estadual e municipal.', alerta: 'Tem que conhecer o sumário pelo menos. Bom material gratuito online.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Pronomes de tratamento e formas de endereçamento', desc: 'Vossa Excelência (autoridades altas: Presidente, Senadores, Deputados, Juízes...). Vossa Senhoria (demais autoridades, particulares em geral). Vossa Magnificência (Reitor). Vossa Eminência (Cardeais). Vossa Reverendíssima (sacerdotes).', alerta: 'TEMA TOP IDECAN. Decore tabela completa. Concordância: verbo na 3ª pessoa.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Prática · redigir documento oficial completo', desc: 'Treinar redação de ofício, memorando, ata e portaria. Foco no formato + linguagem + cordialidade. Autocorreção com checklist do Manual.', alerta: 'Pratique 1 documento por semana. Vale como reforço para a redação final.', tempo: 'até a prova', meta: '12+ documentos redigidos' },
+    ]
+  },
+
+  arqv: {
+    nome: 'Gestão Documental, Arquivologia e Protocolo',
+    cor: 'var(--m-arqv)',
+    tipo: 'alece',
+    info: '🌅 ALECE apenas · Específico peso 2 · 11 etapas item por item do edital',
+    etapas: [
+      { titulo: 'Conceitos Básicos', desc: '<strong>Edital cita literalmente cada um.</strong> Documento (registro de informação em qualquer suporte). Informação (dado significativo). Arquivo (conjunto de documentos). Processo (sequência de documentos sobre um assunto). Pasta · Fichário · Prontuário.', alerta: 'Definições puras. Decoreba IDECAN.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Princípios arquivísticos', desc: '<strong>Edital cita literalmente.</strong> Princípio da proveniência (não misturar fundos de produtores diferentes). Respeito aos fundos. Organicidade. Unicidade. Cumulatividade. Indivisibilidade.', alerta: 'IDECAN cobra cada princípio com nome e descrição.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Ciclo vital dos documentos · Teoria das Três Idades', desc: '<strong>Edital cita literalmente.</strong> 1ª idade: arquivo CORRENTE (uso frequente). 2ª: INTERMEDIÁRIO (uso esporádico). 3ª: PERMANENTE (valor histórico/cultural). Características de cada um.', alerta: 'TEMA TOP. Diferenças entre as 3 idades caem sempre.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Gestão Documental · produção, tramitação, utilização, destinação', desc: '<strong>Edital cita literalmente cada fase.</strong> Produção (criação consciente). Tramitação (movimentação). Utilização (uso/consulta). Destinação (guarda permanente OU eliminação).', alerta: 'Lei 8.159/91 (Lei de Arquivos) regula o tema. Boa cair.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Classificação e Temporalidade', desc: '<strong>Edital cita literalmente.</strong> Classificação documental (por assunto/função/estrutura). Avaliação documental (análise de valor). Tabela de Temporalidade (prazos de guarda).', alerta: 'Critérios de avaliação são técnicos — leia material focado.', tempo: '3 dias', meta: '25 questões' },
+      { titulo: 'Tipos de Arquivo · corrente, intermediário, permanente', desc: '<strong>Edital cita literalmente.</strong> Detalhes operacionais de cada idade. Localização física, acesso, responsabilidade, prazo de guarda.', alerta: 'Casa com Teoria das 3 Idades — estude junto.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Métodos de Arquivamento', desc: '<strong>Edital cita literalmente cada um.</strong> Alfabético (por nome). Numérico (por número). Cronológico (por data). Geográfico (por local). Ideográfico (por assunto/dewey).', alerta: 'IDECAN cobra qual método para qual situação.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Conservação e Pesquisa documental', desc: '<strong>Edital cita literalmente.</strong> Preservação (acondicionamento, restauração, controle ambiental). Instrumentos de pesquisa: índices, inventários, catálogos, guias, sumários.', alerta: 'Conservar ≠ preservar ≠ restaurar.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Controle Documental · empréstimo, consulta, recuperação', desc: '<strong>Edital cita literalmente.</strong> Procedimentos de empréstimo (saída temporária). Consulta (acesso no local). Recuperação da informação (busca eficaz).', alerta: 'Operacional. Cai questão prática.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Protocolo · recebimento, registro, classificação, distribuição, movimentação, expedição', desc: '<strong>Edital cita literalmente CADA etapa.</strong> Fluxo completo: receber documento → registrar (gerar protocolo) → classificar (assunto) → distribuir (destino) → movimentar (acompanhar) → expedir (encaminhar/saída).', alerta: 'CRÍTICO para Técnico Legislativo. Você vai trabalhar com isso.', tempo: '3 dias', meta: '30 questões' },
+      { titulo: 'Tramitação Processual · autuação, juntada, anexação, apensação, incorporação', desc: '<strong>Edital cita literalmente cada termo.</strong> Autuação (formação do processo). Juntada (acréscimo). Anexação (definitiva). Apensação (provisória). Incorporação (absorção).', alerta: 'Diferença anexação × apensação cai SEMPRE em IDECAN.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Gestão Eletrônica · digitalização, arquivos eletrônicos, GED', desc: '<strong>Edital cita literalmente.</strong> Digitalização (conversão analógico→digital). Arquivos eletrônicos. GED (Gerenciamento Eletrônico de Documentos). Vantagens × desafios. Validade jurídica do documento digital.', alerta: 'Tema NOVO e crescente. IDECAN gosta de cobrar.', tempo: '2 dias', meta: '15 questões' },
+    ]
+  },
+
+  procleg: {
+    nome: 'Processo Legislativo e Organização ALECE',
+    cor: 'var(--m-procleg)',
+    tipo: 'alece',
+    info: '🌅 ALECE apenas · Específico peso 2 · 10 etapas item por item do edital',
+    etapas: [
+      { titulo: 'Estrutura do Poder Legislativo · Mesa Diretora, Presidência, Plenário', desc: '<strong>Edital cita literalmente.</strong> Mesa Diretora (órgão dirigente). Presidência (chefia). Plenário (instância máxima decisória). Função de cada órgão.', alerta: 'Estrutura interna específica da ALECE — você vai trabalhar aqui.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Comissões, Bancadas, Lideranças, Blocos parlamentares', desc: '<strong>Edital cita literalmente cada um.</strong> Comissões (permanentes × temporárias). Bancadas (partidárias). Lideranças (porta-voz). Blocos parlamentares (alianças). Função e formação.', alerta: 'Decoreba IDECAN. Cuidado com diferenças.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Processo Legislativo · conceitos e fases', desc: '<strong>Edital cita literalmente.</strong> Conceito do processo legislativo. Fases: iniciativa → discussão → votação → sanção/veto → promulgação → publicação.', alerta: 'Ordem das fases é decoreba.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Proposições Legislativas', desc: '<strong>Edital cita literalmente cada uma.</strong> Projeto de lei (PL). Emenda (modificativa). Requerimento (pedido). Indicação (sugestão ao Executivo). Moção (manifestação coletiva). Substitutivo (PL inteiro novo).', alerta: 'Diferença entre todos é cobrada SEMPRE. PL × Emenda × Substitutivo.', tempo: '3 dias', meta: '25 questões' },
+      { titulo: 'Tramitação Legislativa', desc: '<strong>Edital cita literalmente CADA etapa.</strong> Protocolo · Autuação · Distribuição · Pareceres (Comissões) · Pauta · Votação · Redação final · Sanção · Veto · Promulgação · Publicação. Fluxo completo.', alerta: 'OPERACIONAL. Você vai operar essa tramitação no cargo.', tempo: '4 dias', meta: '35 questões' },
+      { titulo: 'Documentos Legislativos', desc: '<strong>Edital cita literalmente.</strong> Atas (registro de sessões). Pareceres (manifestações de Comissões). Requerimentos. Indicações.', alerta: 'Cruza com Redação Oficial. Estude junto.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Técnica Legislativa · elaboração e espécies normativas', desc: '<strong>Edital cita literalmente.</strong> Elaboração normativa. Espécies (emenda constitucional, lei complementar, lei ordinária, decreto legislativo, resolução, medida provisória). Consolidação. LC 95/98 e LC 107/2001.', alerta: 'Decore as 7 espécies normativas e quórum de cada uma.', tempo: '3 dias', meta: '25 questões' },
+      { titulo: 'Sistemas Legislativos · consulta, tramitação eletrônica', desc: '<strong>Edital cita literalmente.</strong> Sistemas informatizados de tramitação. Consulta processual online. Acompanhamento de proposições.', alerta: 'Tema moderno. IDECAN gosta.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Regimento Interno da ALECE (Resolução 751/2022)', desc: '<strong>Edital cita literalmente como item de Legislação Interna.</strong> Estrutura, sessões, processo legislativo interno da ALECE. Funcionamento de Comissões, Mesa, Plenário no regimento próprio.', alerta: 'LEITURA OBRIGATÓRIA. Buscar texto integral. 100% IDECAN cobra.', tempo: '5-7 dias', meta: 'Leitura integral + 40 questões' },
+      { titulo: 'Estrutura Organizacional da ALECE (Resolução 780/2025)', desc: '<strong>Edital cita literalmente.</strong> Organograma da ALECE. Diretorias, secretarias, unidades. Cargos efetivos × comissionados.', alerta: 'Tema NOVO. Buscar resolução completa.', tempo: '2 dias', meta: '15 questões' },
+    ]
+  },
+
+  admin: {
+    nome: 'Administração Pública e Serviços Adm',
+    cor: 'var(--m-admin)',
+    tipo: 'alece',
+    info: '⚠️ DIFICULDADE · Específico ALECE peso 2 · 8 etapas DENSO',
+    etapas: [
+      { titulo: 'Administração Pública · conceitos e organização', desc: '<strong>Edital cita literalmente.</strong> Conceito subjetivo (entes/órgãos) e objetivo (atividade administrativa). Organização administrativa: direta × indireta (autarquias, fundações, empresas públicas, sociedades de economia mista).', alerta: 'IDECAN cobra a diferença direta × indireta. Decore os 4 entes da indireta.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Funções Administrativas · planejamento, organização, direção, controle', desc: '<strong>Edital cita literalmente as 4 funções (POCC).</strong> Planejamento (definir objetivos). Organização (estruturar recursos). Direção (executar/liderar). Controle (avaliar).', alerta: 'CICLO ADMINISTRATIVO clássico. Cai SEMPRE em IDECAN.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Rotinas Administrativas · O&M', desc: '<strong>Edital cita literalmente.</strong> Procedimentos administrativos. Organização e Métodos (O&M). Padronização de fluxos. Manuais de procedimentos.', alerta: 'Tema operacional. Pouca teoria.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Gestão de Processos administrativos', desc: '<strong>Edital cita literalmente.</strong> Mapeamento, modelagem, melhoria contínua. Lei 9.784/99 (regulamenta processo administrativo — base conceitual).', alerta: 'Foque no conceito de processo administrativo e suas fases.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Atos Administrativos · conceitos gerais e espécies', desc: '<strong>Edital cita literalmente.</strong> Conceito. Atributos (presunção de legitimidade, imperatividade, autoexecutoriedade, tipicidade). Espécies (normativos, ordinatórios, negociais, enunciativos, punitivos). Requisitos de validade (competência, finalidade, forma, motivo, objeto).', alerta: 'IDECAN cobra os ATRIBUTOS e os REQUISITOS. Decore os 5 requisitos de validade.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Expedientes Administrativos · elaboração de minutas', desc: '<strong>Edital cita literalmente.</strong> Elaboração de minutas. Expedientes oficiais. Cruza com Redação Oficial.', alerta: 'Operacional.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Projetos Administrativos · planejamento, implantação, monitoramento', desc: '<strong>Edital cita literalmente as 3 fases.</strong> Planejamento (escopo, cronograma, recursos). Implantação (execução). Monitoramento (acompanhamento, ajustes).', alerta: 'Conceitos de gestão de projetos básica.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Apoio Institucional · comissões, grupos de trabalho, controle informacional', desc: '<strong>Edital cita literalmente.</strong> Suporte a comissões parlamentares. Grupos de trabalho. Organização e recuperação de informações.', alerta: 'Função do Técnico Legislativo no dia a dia.', tempo: '1 dia', meta: '10 questões' },
+    ]
+  },
+
+  atend: {
+    nome: 'Atendimento ao Público e Comunicação Institucional',
+    cor: 'var(--m-atend)',
+    tipo: 'alece',
+    info: '🌅 ALECE apenas · Específico peso 2 · 5 etapas item por item do edital',
+    etapas: [
+      { titulo: 'Atendimento ao Público interno e externo', desc: '<strong>Edital cita literalmente.</strong> Diferenças entre público interno (servidores, parlamentares, setores) e externo (cidadão, imprensa, órgãos). Postura adequada para cada um.', alerta: 'Conceitos básicos. Decoreba leve.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Técnicas de Atendimento · acolhimento, escuta ativa, orientação', desc: '<strong>Edital cita literalmente cada técnica.</strong> Acolhimento (receber bem). Escuta ativa (ouvir sem interromper, repetir o entendimento). Orientação ao usuário (encaminhar com clareza).', alerta: 'Tema novo na ALECE. IDECAN deve cobrar definição de cada técnica.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Comunicação Institucional · organizacional, prestação de informações, encaminhamento', desc: '<strong>Edital cita literalmente.</strong> Comunicação organizacional (interna formal). Prestação de informações (LAI aplicada). Encaminhamento de demandas (fluxo do cidadão para o setor responsável).', alerta: 'Cruza com LAI.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Relações Interpessoais · postura profissional, comunicação verbal e escrita', desc: '<strong>Edital cita literalmente.</strong> Postura profissional (ética, cordialidade, tratamento adequado). Comunicação verbal (tom de voz, clareza, vocabulário). Comunicação escrita (objetividade, formalidade).', alerta: 'Cruza com Ética e Redação Oficial.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Resolução de conflitos no atendimento', desc: 'Lidar com cidadão insatisfeito, situações de tensão, escalonamento de demandas. Encaminhamento para chefia quando necessário.', alerta: 'IDECAN pode cobrar casos práticos.', tempo: '1 dia', meta: '8 questões' },
+    ]
+  },
+
+  ferr: {
+    nome: 'Ferramentas e Sistemas (Informática)',
+    cor: 'var(--m-ferr)',
+    tipo: 'alece',
+    info: '⚠️ DIFICULDADE · Específico ALECE peso 2 · Word, Excel, e-mail, sistemas',
+    etapas: [
+      { titulo: 'Editores de Texto · Word/LibreOffice Writer · Formatação documental', desc: '<strong>Edital cita literalmente.</strong> Funcionalidades essenciais: formatação (fonte, parágrafo, alinhamento), cabeçalho/rodapé, numeração de páginas, sumário automático, inserção de objetos, controle de alterações, mala direta.', alerta: 'IDECAN cobra atalhos e comandos específicos.', tempo: '2 dias', meta: '20 questões' },
+      { titulo: 'Planilhas Eletrônicas · Excel/Calc · controle e organização', desc: '<strong>Edital cita literalmente.</strong> Estrutura (células, linhas, colunas, planilhas). Fórmulas básicas (SOMA, MÉDIA, SE, PROCV/PROCH, CONT.SE). Formatação condicional. Gráficos. Filtros.', alerta: 'Você TEM background técnico — vai dominar fácil. Foque em PROCV e SE.', tempo: '3 dias', meta: '30 questões' },
+      { titulo: 'Correio Eletrônico institucional', desc: '<strong>Edital cita literalmente.</strong> Composição de e-mails formais. Anexos. Cópia (CC) × cópia oculta (CCO). Assinatura institucional. Etiqueta corporativa.', alerta: 'Conceitos básicos. Cuidado com CC × CCO.', tempo: '1 dia', meta: '8 questões' },
+      { titulo: 'Ferramentas Digitais na rotina administrativa', desc: '<strong>Edital cita literalmente.</strong> Compartilhamento em nuvem (Drive, OneDrive). Documentos colaborativos. Calendários compartilhados. Reuniões virtuais (Meet, Teams, Zoom).', alerta: 'Tema moderno. IDECAN cobra noções básicas.', tempo: '1 dia', meta: '10 questões' },
+      { titulo: 'Sistemas Informatizados · protocolo eletrônico, gestão documental, tramitação legislativa', desc: '<strong>Edital cita literalmente.</strong> Sistemas SEI, eGOV, e similares. Protocolo digital. Gestão eletrônica de documentos. Tramitação legislativa informatizada. Cruza com Gestão Documental e Processo Legislativo.', alerta: 'Tema CRÍTICO para Técnico Legislativo. Cai bastante.', tempo: '2 dias', meta: '15 questões' },
+      { titulo: 'Pesquisa e Controle eletrônico · consulta, acompanhamento, relatórios', desc: '<strong>Edital cita literalmente.</strong> Consulta de processos. Acompanhamento de proposições. Geração de relatórios eletrônicos.', alerta: 'Operacional. Pouca teoria, muita prática.', tempo: '1 dia', meta: '10 questões' },
+    ]
+  },
+};
+
+// ═══════════════════════════════════════
+// PROFUNDIDADE DE ESTUDO (Método Reverso Estratégico)
+// 🔴 denso  = 30+ questões + teoria + ficha + revisão espaçada
+// 🟡 medio  = 15 questões + resumo + ficha rápida
+// 🟢 amplo  = 10 questões + lei seca + flashcard (cobertura mínima)
+// COBERTURA TOTAL — varia a profundidade, não pula nada
+// ═══════════════════════════════════════
+const PROF_LABEL = {
+  denso: { tag: '🔴 denso',  desc: '30+ questões + teoria + ficha + revisão' },
+  medio: { tag: '🟡 médio',  desc: '15 questões + resumo + ficha rápida' },
+  amplo: { tag: '🟢 amplo',  desc: '10 questões + lei seca + flashcard' },
+};
+
+// Índices das etapas em cada nível (zero-based, na ordem das trilhas)
+const PROF = {
+  port: {
+    // 28 etapas — eliminatória + desempate, então quase tudo denso/médio
+    denso: [3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,19,26,27], // bases gramaticais + concord/reg/crase/pontuação + interpretação + discursiva
+    medio: [1,2,8,20,21,22,23,24,25], // ortografia, acentuação, advérbios/conj, denotação, discurso, sin/ant, redação
+    amplo: [0], // fonologia (pouco cobrada direto)
+  },
+  rlm: {
+    // 17 etapas
+    denso: [0,1,2,3,4,5,6,7,10,11,12,13,14,16],
+    medio: [8,9,15],
+    amplo: [],
+  },
+  leg: {
+    // 21 etapas — LGPD + LAI + Ética + LIMPE + 17 internas ALECE — TODAS DENSO
+    denso: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+    medio: [],
+    amplo: [],
+  },
+  // ═══ ALECE — Trilhas exclusivas (6) ═══
+  redoff: {
+    // 12 etapas
+    denso: [0,3,5,6,7,10,11], // características, ofício, comunicações, revisão gramatical, vícios, pronomes de tratamento, prática
+    medio: [1,2,4,9],         // ata, memorando, portaria/atos, manual presidência
+    amplo: [8],               // padronização (decoreba simples)
+  },
+  arqv: {
+    // 12 etapas
+    denso: [2,3,4,9,10], // 3 idades, gestão documental, classificação/temporalidade, protocolo, tramitação processual
+    medio: [0,1,5,6,7,11], // conceitos, princípios, tipos arquivo, métodos arquivamento, conservação, gestão eletrônica
+    amplo: [8],            // controle documental
+  },
+  procleg: {
+    // 10 etapas
+    denso: [3,4,6,8], // proposições, tramitação, técnica legislativa, Regimento ALECE
+    medio: [0,1,2,5,9], // estrutura, comissões, processo legislativo, documentos legislativos, estrutura organizacional
+    amplo: [7],         // sistemas legislativos
+  },
+  admin: {
+    // 8 etapas — TUDO DENSO (dificuldade da Let)
+    denso: [0,1,2,3,4,5,6,7],
+    medio: [],
+    amplo: [],
+  },
+  atend: {
+    // 5 etapas
+    denso: [1,2], // técnicas de atendimento, comunicação institucional
+    medio: [0,3], // público interno/externo, relações interpessoais
+    amplo: [4],   // resolução de conflitos
+  },
+  ferr: {
+    // 6 etapas — TUDO DENSO (Let tem dificuldade em informática)
+    denso: [0,1,2,3,4,5],
+    medio: [],
+    amplo: [],
+  },
+};
+
+function getProf(matId, etapaIdx) {
+  const m = PROF[matId];
+  if(!m) return null;
+  if(m.denso && m.denso.includes(etapaIdx)) return 'denso';
+  if(m.medio && m.medio.includes(etapaIdx)) return 'medio';
+  if(m.amplo && m.amplo.includes(etapaIdx)) return 'amplo';
+  return 'medio'; // fallback
+}
+
+// Cores das matérias
+const MAT_COR = {
+  port:'var(--m-port)', rlm:'var(--m-rlm)', pcd:'var(--m-pcd)', leg:'var(--m-leg)',
+  const:'var(--m-const)', adm:'var(--m-adm)', civil:'var(--m-civil)',
+  proc:'var(--m-proc)', pen:'var(--m-pen)', procp:'var(--m-procp)',
+  redoff:'var(--m-redoff)', arqv:'var(--m-arqv)', procleg:'var(--m-procleg)',
+  admin:'var(--m-admin)', atend:'var(--m-atend)', ferr:'var(--m-ferr)',
+};
+const MAT_NOME = {
+  port:'Português', rlm:'RLM', pcd:'Dir. PCD', leg:'Legislação ALECE',
+  const:'Constitucional', adm:'Administrativo', civil:'Civil',
+  proc:'Processo Civil', pen:'Penal', procp:'Processo Penal',
+  quest:'Questões / Simulado',
+  // Trilhas exclusivas ALECE
+  redoff: 'Redação Oficial', arqv: 'Gestão Documental', procleg: 'Processo Legislativo',
+  admin: 'Adm Pública ALECE', atend: 'Atendimento Público', ferr: 'Ferramentas/Sistemas',
+};
+
+// PLANO SEMANAL — terça a sábado de estudos, domingo descanso
+const PLANO_SEMANA = {
+  // Domingo — REVISÃO ESTRATÉGICA (tarde) + descanso noite
+  0: {
+    nome: 'Domingo',
+    apelido: 'Revisão da semana + descanso noite',
+    blocos: [
+      { mat:'port',  tag:'b-port',  hor:'☀️ Bloco 1 · meio-dia (após almoço)', tempo:'1h30', fase:'alece', isRevisao: true },
+      { mat:'rlm',   tag:'b-rlm',   hor:'☀️ Bloco 2 · tarde',                  tempo:'1h', fase:'alece' },
+      { mat:'leg',   tag:'b-leg',   hor:'☀️ Bloco 3 · final tarde (leitura)',   tempo:'1h', fase:'alece' },
+    ]
+  },
+
+  // Segunda — Port + RLM + Redação Oficial
+  1: {
+    nome: 'Segunda-feira',
+    apelido: 'Início forte · Port + RLM + RedOf',
+    blocos: [
+      { mat:'port',   tag:'b-port',   hor:'🌅 Bloco 1 · manhã (após bb)',  tempo:'1h30', fase:'alece' },
+      { mat:'rlm',    tag:'b-rlm',    hor:'🌅 Bloco 2 · brechas',           tempo:'30 min', fase:'alece' },
+      { mat:'redoff', tag:'b-redoff', hor:'🌅 Bloco 3 · tarde (bb dorme)',  tempo:'1h', fase:'alece' },
+      { mat:'leg',    tag:'b-leg',    hor:'🌙 Bloco 4 · noite (20h30+)',    tempo:'1h30', fase:'alece' },
+    ]
+  },
+
+  // Terça — Arquivologia + Adm Pública
+  2: {
+    nome: 'Terça-feira',
+    apelido: 'Arquivologia + Adm Pública',
+    blocos: [
+      { mat:'port',  tag:'b-port',  hor:'🌅 Bloco 1 · manhã',             tempo:'1h30', fase:'alece' },
+      { mat:'rlm',   tag:'b-rlm',   hor:'🌅 Bloco 2 · brechas',           tempo:'30 min', fase:'alece' },
+      { mat:'arqv',  tag:'b-arqv',  hor:'🌅 Bloco 3 · tarde',             tempo:'1h', fase:'alece' },
+      { mat:'admin', tag:'b-admin', hor:'🌙 Bloco 4 · noite (20h30+)',    tempo:'1h30', fase:'alece' },
+    ]
+  },
+
+  // Quarta — Ferramentas + Processo Legislativo
+  3: {
+    nome: 'Quarta-feira',
+    apelido: 'Ferramentas + Proc Legislativo',
+    blocos: [
+      { mat:'port',    tag:'b-port',    hor:'🌅 Bloco 1 · manhã',           tempo:'1h30', fase:'alece' },
+      { mat:'rlm',     tag:'b-rlm',     hor:'🌅 Bloco 2 · brechas',         tempo:'30 min', fase:'alece' },
+      { mat:'ferr',    tag:'b-ferr',    hor:'🌅 Bloco 3 · tarde',           tempo:'1h', fase:'alece' },
+      { mat:'procleg', tag:'b-procleg', hor:'🌙 Bloco 4 · noite (20h30+)', tempo:'1h30', fase:'alece' },
+    ]
+  },
+
+  // Quinta — Adm Pública reforço + Atendimento
+  4: {
+    nome: 'Quinta-feira',
+    apelido: 'Adm Pública + Atendimento',
+    blocos: [
+      { mat:'port',  tag:'b-port',  hor:'🌅 Bloco 1 · manhã',             tempo:'1h30', fase:'alece' },
+      { mat:'rlm',   tag:'b-rlm',   hor:'🌅 Bloco 2 · brechas',           tempo:'30 min', fase:'alece' },
+      { mat:'admin', tag:'b-admin', hor:'🌅 Bloco 3 · tarde',             tempo:'1h', fase:'alece' },
+      { mat:'atend', tag:'b-atend', hor:'🌙 Bloco 4 · noite (20h30+)',   tempo:'1h30', fase:'alece' },
+    ]
+  },
+
+  // Sexta — REDAÇÃO obrigatória + Legislação
+  5: {
+    nome: 'Sexta-feira',
+    apelido: 'REDAÇÃO 🎯 eliminatória',
+    blocos: [
+      { mat:'port',  tag:'b-port',  hor:'🌅 Bloco 1 · manhã',             tempo:'1h', fase:'alece' },
+      { mat:'rlm',   tag:'b-rlm',   hor:'🌅 Bloco 2 · brechas',           tempo:'30 min', fase:'alece' },
+      { mat:'leg',   tag:'b-leg',   hor:'🌅 Bloco 3 · tarde',             tempo:'1h', fase:'alece' },
+      { mat:'port',  tag:'b-port',  hor:'🌙 Bloco 4 · noite · REDAÇÃO',   tempo:'1h30', fase:'alece', isRedacao: true },
+      { mat:'ferr',  tag:'b-ferr',  hor:'🌙 Bloco 5 · final noite',       tempo:'1h', fase:'alece' },
+    ]
+  },
+
+  // Sábado — Simulado + Legislação
+  6: {
+    nome: 'Sábado',
+    apelido: 'Simulado IDECAN + Legislação',
+    blocos: [
+      { mat:'port',  tag:'b-port',  hor:'🌅 Bloco 1 · manhã (simulado)',   tempo:'2h', fase:'alece', isSimulado: true },
+      { mat:'port',  tag:'b-port',  hor:'🌅 Bloco 2 · meio-dia (correção)', tempo:'1h', fase:'alece', isCorrecao: true },
+      { mat:'leg',   tag:'b-leg',   hor:'🌙 Bloco 3 · noite (20h30+)',    tempo:'1h30', fase:'alece' },
+      { mat:'arqv',  tag:'b-arqv',  hor:'🌙 Bloco 4 · final noite',       tempo:'1h', fase:'alece' },
+    ]
+  },
+};
+
+const FRASES = [
+  "Uma coisa de cada vez. E essa coisa é a ALECE.",
+  "Você não estuda APESAR de ser mãe. Você estuda PORQUE é mãe.",
+  "90 vagas. 30 imediatas. Há lugar pra você.",
+  "Travou? Abre 5 questões. Só 5. Depois decide se para.",
+  "Estudo reverso: 1h focada > 3h dispersas.",
+  "Português hoje, conquista amanhã.",
+  "O bebê dormiu? Você acordou para o futuro.",
+  "Redação é eliminatória. SEXTA é dia sagrado.",
+  "Você é Aprova Map+ aplicada em você mesma.",
+  "Mãe que passa não tem superpoderes. Tem método.",
+  "Cada questão errada hoje é um acerto garantido na prova.",
+  "Domingo é revisão estratégica. Consistência vence talento.",
+  "Não precisa ser perfeito. Precisa ser constante.",
+  "Fonética travou? Pula pra questão. Volta depois.",
+];
+
+// ═══════════════════════════════════════
+// DATA OFICIAL DE INÍCIO DO CICLO
+// (antes disso = modo preparação acolhedor)
+// ═══════════════════════════════════════
+const DATA_INICIO_CICLO = new Date(2026, 4, 25); // domingo, 25/05/2026
+DATA_INICIO_CICLO.setHours(0,0,0,0);
+
+function antesDoInicio() {
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  return hoje < DATA_INICIO_CICLO;
+}
+
+function diasParaInicio() {
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  return Math.ceil((DATA_INICIO_CICLO - hoje) / 86400000);
+}
+
+// ═══════════════════════════════════════
+// ESTADO
+// ═══════════════════════════════════════
+let logs = JSON.parse(localStorage.getItem('logs_tjce') || '[]');
+let blocosFeitos = JSON.parse(localStorage.getItem('bf_tjce') || '{}');
+let trilhas = JSON.parse(localStorage.getItem('tr_tjce') || '{}');
+
+function save() {
+  localStorage.setItem('logs_tjce', JSON.stringify(logs));
+  localStorage.setItem('bf_tjce', JSON.stringify(blocosFeitos));
+  localStorage.setItem('tr_tjce', JSON.stringify(trilhas));
+}
+
+// ═══════════════════════════════════════
+// BACKUP / RESTAURAR PROGRESSO
+// ═══════════════════════════════════════
+function gerarBackupObj() {
+  return {
+    versao: 'alece-1',
+    data: new Date().toISOString(),
+    logs: logs,
+    blocosFeitos: blocosFeitos,
+    trilhas: trilhas
+  };
+}
+
+function exportarBackup() {
+  const obj = gerarBackupObj();
+  const txt = JSON.stringify(obj, null, 2);
+  const blob = new Blob([txt], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const hoje = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = `backup-estudos-${hoje}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  msgBackup('✅ Backup baixado! Guarde esse arquivo. Para restaurar depois, use "Restaurar backup".', 'var(--sage)');
+}
+
+function aplicarBackup(obj) {
+  if(!obj || (!obj.logs && !obj.trilhas && !obj.blocosFeitos)) {
+    msgBackup('❌ Arquivo inválido. Verifique se é um backup gerado por este painel.', 'var(--terra)');
+    return false;
+  }
+  if(obj.logs) logs = obj.logs;
+  if(obj.blocosFeitos) blocosFeitos = obj.blocosFeitos;
+  if(obj.trilhas) trilhas = obj.trilhas;
+  save();
+  // Re-renderizar tudo
+  if(typeof renderHoje === 'function') renderHoje();
+  if(typeof renderTrilhas === 'function') renderTrilhas();
+  if(typeof renderProgress === 'function') renderProgress();
+  if(typeof renderLogs === 'function') renderLogs();
+  if(typeof renderSemana === 'function') renderSemana();
+  msgBackup('✅ Progresso restaurado com sucesso! Suas etapas e horas voltaram.', 'var(--sage)');
+  return true;
+}
+
+function importarBackup(event) {
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const obj = JSON.parse(e.target.result);
+      aplicarBackup(obj);
+    } catch(err) {
+      msgBackup('❌ Não consegui ler o arquivo. Ele precisa ser um backup .json válido.', 'var(--terra)');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = ''; // permite reimportar o mesmo arquivo
+}
+
+function copiarBackupTexto() {
+  const txt = JSON.stringify(gerarBackupObj());
+  const ta = document.getElementById('backupText');
+  if(ta) ta.value = txt;
+  msgBackup('✅ Texto do backup gerado abaixo. Copie e guarde em local seguro (e-mail, notas).', 'var(--sage)');
+}
+
+function restaurarDoTexto() {
+  const ta = document.getElementById('backupText');
+  if(!ta || !ta.value.trim()) {
+    msgBackup('❌ Cole o texto do backup primeiro.', 'var(--terra)');
+    return;
+  }
+  try {
+    const obj = JSON.parse(ta.value.trim());
+    aplicarBackup(obj);
+  } catch(err) {
+    msgBackup('❌ Texto inválido. Verifique se copiou o backup completo.', 'var(--terra)');
+  }
+}
+
+function msgBackup(texto, cor) {
+  const el = document.getElementById('backupMsg');
+  if(el) { el.textContent = texto; el.style.color = cor || 'var(--ink)'; }
+}
+
+// ═══════════════════════════════════════
+// CRONÔMETRO AUTOMÁTICO
+// ═══════════════════════════════════════
+let timer = JSON.parse(localStorage.getItem('timer_tjce') || 'null'); // { matId, startMs, elapsedMs, blocoIdx, paused }
+let timerInterval = null;
+let modalStarVal = 4; // confiança padrão
+
+function saveTimer() {
+  localStorage.setItem('timer_tjce', JSON.stringify(timer));
+}
+
+function startTimer(matId, blocoIdx) {
+  // Se já existe um timer rodando em outra matéria, pergunta
+  if(timer && !timer.paused) {
+    if(!confirm(`Você já tem um cronômetro rodando em ${MAT_NOME[timer.matId]}. Deseja parar e iniciar um novo em ${MAT_NOME[matId]}?`)) {
+      return;
+    }
+    // Para o anterior: descarta sem registrar
+    timer = null;
+    if(timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  }
+  timer = {
+    matId,
+    blocoIdx,
+    startMs: Date.now(),
+    elapsedMs: 0,
+    paused: false
+  };
+  saveTimer();
+  renderTimerUI();
+  renderHoje();
+  startTimerInterval();
+}
+
+function pauseTimer() {
+  if(!timer) return;
+  if(timer.paused) {
+    // retomar
+    timer.startMs = Date.now();
+    timer.paused = false;
+    startTimerInterval();
+  } else {
+    // pausar
+    timer.elapsedMs += Date.now() - timer.startMs;
+    timer.paused = true;
+    if(timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  }
+  saveTimer();
+  renderTimerUI();
+}
+
+function stopTimer() {
+  if(!timer) return;
+  // Calcula tempo total
+  let totalMs = timer.elapsedMs;
+  if(!timer.paused) totalMs += Date.now() - timer.startMs;
+  const totalMin = Math.round(totalMs / 60000);
+
+  if(totalMin < 1) {
+    if(!confirm('Você estudou menos de 1 minuto. Tem certeza que quer registrar?')) return;
+  }
+
+  // Abre modal de finalização
+  document.getElementById('modalMatNome').textContent = MAT_NOME[timer.matId] || timer.matId;
+  document.getElementById('modalTempoFinal').textContent = formatTempo(totalMs);
+  document.getElementById('modalNota').value = '';
+  modalStarVal = 4;
+  document.querySelectorAll('.modal-star').forEach(s => {
+    s.classList.toggle('active', parseInt(s.dataset.c) <= 4);
+  });
+  document.getElementById('modalFim').classList.add('active');
+}
+
+function setStar(v) {
+  modalStarVal = v;
+  document.querySelectorAll('.modal-star').forEach(s => {
+    s.classList.toggle('active', parseInt(s.dataset.c) <= v);
+  });
+}
+
+function cancelarFinal() {
+  // Mantém o timer rodando — apenas fecha o modal sem registrar
+  document.getElementById('modalFim').classList.remove('active');
+}
+
+function confirmarFinal() {
+  if(!timer) return;
+  let totalMs = timer.elapsedMs;
+  if(!timer.paused) totalMs += Date.now() - timer.startMs;
+  const horas = +(totalMs / 3600000).toFixed(2);
+
+  const nota = document.getElementById('modalNota').value.trim();
+  const matId = timer.matId;
+
+  logs.unshift({
+    id: Date.now(),
+    matId,
+    matNome: MAT_NOME[matId] || matId,
+    horas,
+    conf: modalStarVal,
+    nota,
+    data: new Date().toISOString(),
+    viaTimer: true
+  });
+
+  // Limpa timer
+  timer = null;
+  if(timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  saveTimer();
+  save();
+
+  document.getElementById('modalFim').classList.remove('active');
+  renderTimerUI();
+  renderHoje();
+  renderLogs();
+  renderProgress();
+
+  // Feedback visual leve
+  toast(`✓ Sessão de ${formatTempo(totalMs)} registrada em ${MAT_NOME[matId]}`);
+}
+
+function startTimerInterval() {
+  if(timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if(!timer || timer.paused) return;
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  if(!timer) return;
+  let totalMs = timer.elapsedMs;
+  if(!timer.paused) totalMs += Date.now() - timer.startMs;
+  const timeEl = document.getElementById('timerFixedTime');
+  if(timeEl) timeEl.textContent = formatTempo(totalMs, true);
+}
+
+function renderTimerUI() {
+  const box = document.getElementById('timerFixed');
+  if(!timer) {
+    box.classList.remove('active');
+    return;
+  }
+  box.classList.add('active');
+  document.getElementById('timerFixedMat').textContent = MAT_NOME[timer.matId] || timer.matId;
+  const pauseBtn = document.getElementById('timerPauseBtn');
+  pauseBtn.textContent = timer.paused ? '▶ Retomar' : '⏸ Pausar';
+  updateTimerDisplay();
+}
+
+function formatTempo(ms, showSec) {
+  const totalSec = Math.floor(ms / 1000);
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  if(showSec) {
+    return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }
+  if(h > 0) return `${h}h ${m}min`;
+  return `${m}min`;
+}
+
+// Toast simples
+function toast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:120px;right:20px;background:var(--sage);color:#fff;padding:12px 18px;border-radius:10px;font-size:0.88rem;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,.15);z-index:300;animation:slideIn .3s ease;max-width:300px;';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+// Restaurar timer ao carregar a página
+function restoreTimer() {
+  if(timer) {
+    renderTimerUI();
+    if(!timer.paused) startTimerInterval();
+  }
+}
+
+// ═══════════════════════════════════════
+// TRILHAS HELPERS
+// ═══════════════════════════════════════
+function getEtapaAtual(matId) {
+  if(!TRILHAS[matId]) return null;
+  const idx = trilhas[matId] ?? 0;
+  const t = TRILHAS[matId];
+  if(idx >= t.etapas.length) {
+    return { trilha: t, etapa: t.etapas[t.etapas.length-1], idx: t.etapas.length-1, total: t.etapas.length, concluida: true };
+  }
+  return { trilha: t, etapa: t.etapas[idx], idx, total: t.etapas.length, concluida: false };
+}
+
+function avancarEtapa(matId) {
+  if(!TRILHAS[matId]) return;
+  const atual = trilhas[matId] ?? 0;
+  if(atual < TRILHAS[matId].etapas.length) {
+    trilhas[matId] = atual + 1;
+    save();
+    renderHoje();
+    renderTrilhas();
+  }
+}
+
+function voltarEtapa(matId) {
+  if(!TRILHAS[matId]) return;
+  const atual = trilhas[matId] ?? 0;
+  if(atual > 0) {
+    trilhas[matId] = atual - 1;
+    save();
+    renderHoje();
+    renderTrilhas();
+  }
+}
+
+function irParaEtapa(matId, idx) {
+  trilhas[matId] = idx;
+  const key = 'open_'+matId+'_'+idx;
+  delete trilhas[key];
+  save();
+  renderHoje();
+  renderTrilhas();
+}
+
+function toggleExpand(matId, idx) {
+  const key = 'open_'+matId+'_'+idx;
+  trilhas[key] = !trilhas[key];
+  save();
+  renderTrilhas();
+}
+
+// ═══════════════════════════════════════
+// HOJE
+// ═══════════════════════════════════════
+function getSaudacao() {
+  const h = new Date().getHours();
+  if(h < 12) return 'Bom dia';
+  if(h < 18) return 'Boa tarde';
+  return 'Boa noite';
+}
+
+function renderHoje() {
+  const hoje = new Date();
+  const dow = hoje.getDay();
+  const isoHoje = hoje.toISOString().slice(0,10);
+  let plano = PLANO_SEMANA[dow];
+
+  document.getElementById('hojeData').textContent =
+    hoje.toLocaleDateString('pt-BR', { weekday:'long', day:'2-digit', month:'long' })
+      .replace(/^./, c => c.toUpperCase());
+
+  const titEl = document.getElementById('hojeTitulo');
+  const resEl = document.getElementById('hojeResumo');
+  const statsEl = document.getElementById('hojeStats');
+  const listEl = document.getElementById('blocoList');
+  const countEl = document.getElementById('hojeBlocoCount');
+
+  const frase = FRASES[hoje.getDate() % FRASES.length];
+
+  // ── MODO PREPARAÇÃO: antes do início oficial do ciclo (25/05) ──
+  if(antesDoInicio()) {
+    const dias = diasParaInicio();
+    const minutosEstudados = logs.reduce((s,l)=>s+l.horas, 0) * 60;
+    const temEstudo = logs.length > 0;
+
+    titEl.innerHTML = `${getSaudacao()}, <span>Raiza</span>`;
+    resEl.innerHTML = `
+      <strong>🌱 Modo preparação · ${dias === 1 ? 'amanhã começa o ciclo' : `faltam ${dias} dias para o início`}.</strong>
+      ${temEstudo ? `Você já tem <strong style="color:var(--sage)">${Math.round(minutosEstudados)} min preservados</strong> no seu progresso. ` : ''}
+      Hoje é <strong>${hoje.toLocaleDateString('pt-BR',{weekday:'long'})}</strong>, e o ciclo oficial começa <strong>segunda-feira, 25 de maio</strong>. Use hoje pra descansar com o bebê ou fazer a inscrição (ALECE até 22/06) — <strong>sem cobrança</strong>. <br><em style="color:var(--plum)">"${frase}"</em>`;
+
+    statsEl.innerHTML = `
+      <div class="h-stat"><div class="h-stat-val" style="color:var(--terra)">${dias === 1 ? 'amanhã' : dias+'d'}</div><div class="h-stat-lbl">Início do ciclo</div></div>
+      <div class="h-stat"><div class="h-stat-val" style="color:var(--sage)">${Math.round(minutosEstudados)} min</div><div class="h-stat-lbl">Já estudado</div></div>
+      <div class="h-stat"><div class="h-stat-val">${getDiasUnicos()}</div><div class="h-stat-lbl">Dias com estudo</div></div>
+      <div class="h-stat"><div class="h-stat-val" style="color:var(--gold)">${logs.length}</div><div class="h-stat-lbl">Sessões registradas</div></div>`;
+
+    countEl.textContent = 'preparação';
+
+    listEl.innerHTML = `
+      <div class="box" style="background:linear-gradient(135deg,var(--sage-dim),transparent);border-left:4px solid var(--sage);padding:24px 28px;margin-bottom:14px;">
+        <div style="font-family:var(--font-head);font-size:1.3rem;font-weight:600;color:var(--sage);margin-bottom:10px;">💛 Seu painel está pronto</div>
+        <div style="color:var(--ink-soft);font-size:0.92rem;line-height:1.6;">
+          Foco 100% ALECE 2026 · Técnico Legislativo. Painel calibrado para sua realidade: <strong style="color:var(--ink)">mãe de bebê, 3h durante o dia + 2-3h noite após 20h30, estudo reverso</strong>. Gramática e RLM são suas fraquezas — o painel reforça essas áreas.
+        </div>
+      </div>
+
+      <div class="box" style="padding:24px 28px;">
+        <div style="font-family:var(--font-head);font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:14px;">📋 Sua segunda-feira (25/05) já está pronta</div>
+        <div style="color:var(--ink-soft);font-size:0.9rem;line-height:1.6;margin-bottom:14px;">
+          O ciclo oficial começa segunda-feira com RLM (sua dificuldade) em destaque + Redação Oficial:
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border);"><span style="color:var(--m-port);font-weight:600;font-family:var(--font-head);">1</span><span style="flex:1;font-size:0.88rem;">☀️ Português · 1h (brechas (bb dorme))</span><span style="color:var(--ink-soft);font-size:0.8rem;">P1</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border);"><span style="color:var(--m-rlm);font-weight:600;font-family:var(--font-head);">2</span><span style="flex:1;font-size:0.88rem;">☀️ RLM · 45min brechas</span><span style="color:var(--ink-soft);font-size:0.8rem;">⚠️ DIFICULDADE</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border);"><span style="color:var(--m-redoff);font-weight:600;font-family:var(--font-head);">3</span><span style="flex:1;font-size:0.88rem;">🌙 Redação Oficial · 1h30 (21h-22h30)</span><span style="color:var(--ink-soft);font-size:0.8rem;">específico</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border);"><span style="color:var(--m-rlm);font-weight:600;font-family:var(--font-head);">4</span><span style="flex:1;font-size:0.88rem;">🌙 RLM foco · 1h30 (22h30-00h)</span><span style="color:var(--ink-soft);font-size:0.8rem;">⚠️ DENSO</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;"><span style="color:var(--m-port);font-weight:600;font-family:var(--font-head);">5</span><span style="flex:1;font-size:0.88rem;">🌙 Português · 1h (final noite)</span><span style="color:var(--ink-soft);font-size:0.8rem;">reforço</span></div>
+        </div>
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:0.82rem;color:var(--ink-soft);font-style:italic;">
+          Total: <strong style="color:var(--terra)">5h45 planejadas</strong> — adapte conforme o bb. Algumas horas é melhor que zero, sempre.
+        </div>
+      </div>
+
+      <div class="box" style="padding:20px 24px;background:linear-gradient(135deg,var(--gold-dim),transparent);border-left:4px solid var(--gold);">
+        <div style="font-family:var(--font-head);font-size:1.05rem;font-weight:600;color:var(--gold);margin-bottom:6px;">🌿 E se hoje (domingo) você quiser estudar um pouco?</div>
+        <div style="color:var(--ink-soft);font-size:0.88rem;line-height:1.6;">
+          Sem problema. Abra a aba <strong>🎯 Trilhas</strong>, escolha RLM ou Adm Pública (suas dificuldades), e clique em <strong>"▶ Estudar agora"</strong>. O cronômetro registra e seu progresso continua amanhã. <strong style="color:var(--ink)">Mas não se obrigue.</strong> Hoje pode ser descanso e organização.
+        </div>
+      </div>`;
+    return;
+  }
+
+  // ── DIA ZERO (primeiro sábado sem nenhum log) ──
+  const ehDiaZero = logs.length === 0 && dow === 6;
+  if(ehDiaZero) {
+    plano = {
+      nome: 'Sábado · DIA ZERO',
+      apelido: 'Sua estreia — devagar e firme',
+      blocos: [
+        { mat:'port',  tag:'b-port',  hor:'🌅 Bloco 1 · tarde',         tempo:'1h', fase:'alece' },
+        { mat:'rlm',   tag:'b-rlm',   hor:'🌅 Bloco 2 · tarde',         tempo:'30 min', fase:'alece' },
+        { mat:'leg',   tag:'b-leg',   hor:'🌙 Bloco 3 · noite (20h30+)', tempo:'1h', fase:'alece' },
+        { mat:'redoff',tag:'b-redoff',hor:'🌙 Bloco 4 · noite',          tempo:'30 min', fase:'alece', isFamiliarizacao: true },
+      ]
+    };
+  }
+
+  titEl.innerHTML = `${getSaudacao()}, <span>${plano.apelido}</span>`;
+
+  // Calcular tempo total
+  let totalMin = 0;
+  plano.blocos.forEach(b => {
+    if(b.tempo.includes('h')) {
+      const h = parseInt(b.tempo.match(/(\d+)h/)[1]);
+      const m = parseInt((b.tempo.match(/h(\d+)/) || [0,0])[1]) || 0;
+      totalMin += h*60 + m;
+    } else {
+      totalMin += parseInt(b.tempo);
+    }
+  });
+  const totalH = (totalMin/60).toFixed(1);
+
+  if(ehDiaZero) {
+    resEl.innerHTML = `<strong>🌱 DIA ZERO · hoje começa de verdade.</strong> Esse painel está montado para começar leve mas sólido: Português pela base, RLM pelo zero, Legislação ALECE pelos conceitos. <strong>O bloco final é só para familiarizar com a banca IDECAN</strong>, sem pressão. <br><em style="color:var(--plum)">"${frase}"</em> <br><br><strong style="color:var(--terra)">⏱ Como usar o cronômetro:</strong> clique em <em>"▶ Iniciar cronômetro"</em> em qualquer bloco. Ele fica fixo no canto da tela e roda automaticamente. Ao terminar, clique em "Finalizar" e o tempo já entra no seu progresso. Sem precisar anotar à mão.`;
+  } else {
+    resEl.innerHTML = `<strong>${plano.blocos.length} blocos · ${totalH}h planejadas para hoje.</strong> Comece pelo Bloco 1 (Português) — é P1 sagrado. Use o estudo reverso em todos os blocos jurídicos: <strong>questões primeiro, teoria sob demanda</strong>. <br><em style="color:var(--plum)">"${frase}"</em>`;
+  }
+
+  const feitosHoje = blocosFeitos[isoHoje] || [];
+  const horasHoje = logs.filter(l => l.data.startsWith(isoHoje)).reduce((s,l)=>s+l.horas, 0);
+
+  statsEl.innerHTML = `
+    <div class="h-stat"><div class="h-stat-val">${totalH}h</div><div class="h-stat-lbl">Previsto hoje</div></div>
+    <div class="h-stat"><div class="h-stat-val" style="color:var(--sage)">${horasHoje.toFixed(1)}h</div><div class="h-stat-lbl">Já estudado</div></div>
+    <div class="h-stat"><div class="h-stat-val" style="color:var(--terra)">${feitosHoje.length}/${plano.blocos.length}</div><div class="h-stat-lbl">Blocos feitos</div></div>
+    <div class="h-stat"><div class="h-stat-val" style="color:var(--gold)">${getDiasUnicos()}</div><div class="h-stat-lbl">Dias acumulados</div></div>`;
+
+  countEl.textContent = `${plano.blocos.length} blocos · ${totalH}h total`;
+
+  // Renderizar blocos COM divisores DIA/NOITE quando fase muda
+  let lastPeriodo = null;
+  const htmlPartes = [];
+  plano.blocos.forEach((b, i) => {
+    // Detectar período pelo emoji do horário: 🌅/☀️ = dia, 🌙 = noite
+    let periodo = 'dia';
+    if(b.hor && b.hor.includes('🌙')) periodo = 'noite';
+
+    // Divisor quando muda o período (dia → noite)
+    if(periodo !== lastPeriodo) {
+      if(periodo === 'dia') {
+        htmlPartes.push(`<div class="dia-noite-divisor"><span class="dia-noite-titulo alece">🌅 BLOCO DIA <span class="dia-noite-sub">— brechas, bb dormindo</span></span><span class="dia-noite-linha"></span></div>`);
+      } else {
+        htmlPartes.push(`<div class="dia-noite-divisor"><span class="dia-noite-titulo alece">🌙 BLOCO NOITE <span class="dia-noite-sub">— após 20h30, foco principal</span></span><span class="dia-noite-linha"></span></div>`);
+      }
+      lastPeriodo = periodo;
+    }
+
+    const feito = feitosHoje.includes(i);
+    const info = getEtapaAtual(b.mat);
+
+    // Pill sempre ALECE
+    const fasePill = 'alece';
+
+    let conteudo;
+    if(b.isRedacao) {
+      conteudo = `
+        <div class="bloco-pill ${fasePill}">📝 Redação semanal · vale 2x</div>
+        <div class="bloco-titulo">Discursiva — uma redação cronometrada</div>
+        <div class="bloco-detalhe">Tema atualidade (problemas sociais, ética, tecnologia). <strong>20-30 linhas</strong>. 1h escrevendo + 30min autocorreção. <strong>ELIMINATÓRIA — mínimo 12 de 20.</strong> Treine 1 por semana até a prova.</div>`;
+    } else if(b.isSimulado) {
+      conteudo = `
+        <div class="bloco-pill ${fasePill}">📊 Simulado parcial</div>
+        <div class="bloco-titulo">30 questões mistas cronometradas</div>
+        <div class="bloco-detalhe">Sem consultar. Distribuição: 10 Português + 5 RLM + 5 Legislação/Ética + 30 específicas rotativas (Redação Oficial, Arquivologia, Proc Legislativo, Adm Pública, Atendimento, Ferramentas). Mede ritmo, identifica pontos fracos.</div>`;
+    } else if(b.isCorrecao) {
+      conteudo = `
+        <div class="bloco-pill ${fasePill}">🔍 Correção</div>
+        <div class="bloco-titulo">Análise dos erros do simulado</div>
+        <div class="bloco-detalhe">Para cada erro, classifique: <strong>não estudei / estudei mas esqueci / armadilha de banca</strong>. Anote os pontos fracos no diário — vão guiar o foco da semana seguinte.</div>`;
+    } else if(b.isRevisao) {
+      conteudo = `
+        <div class="bloco-pill ${fasePill}">🔁 Revisão estratégica · domingo</div>
+        <div class="bloco-titulo">Releitura ativa da semana</div>
+        <div class="bloco-detalhe">Domingo é dia de <strong>consolidar antes de seguir</strong>. Releia 1 ficha de cada matéria estudada na semana e faça 10-15 questões dos pontos onde mais errou. Cérebro descansado memoriza melhor — domingos curtos e sólidos valem mais que sábado exagerado. <strong>À noite descansa.</strong></div>`;
+    } else if(b.isFamiliarizacao) {
+      conteudo = `
+        <div class="bloco-pill" style="background:var(--gold-dim);color:var(--gold)">✨ Estreia · primeiro contato</div>
+        <div class="bloco-titulo">Familiarização com IDECAN</div>
+        <div class="bloco-detalhe">Hoje é seu DIA ZERO. Pegue <strong>10 questões fáceis IDECAN</strong> (ou bancas similares) e resolva SEM PRESSA. O objetivo é <strong>sentir o estilo da banca</strong>: como pergunta, que pegadinhas usa. Anote no diário 3 impressões.</div>`;
+    } else if(b.mat === 'quest') {
+      conteudo = `
+        <div class="bloco-pill ${fasePill}">⚡ Estudo reverso</div>
+        <div class="bloco-titulo">Bloco de questões mistas</div>
+        <div class="bloco-detalhe">15-20 questões das matérias do dia. Sem consultar. Confira gabarito e <strong>leia teoria APENAS do que errou</strong>.</div>`;
+    } else if(info) {
+      const banca = 'IDECAN';
+      const alertaHTML = info.etapa.alerta ? `<div class="etapa-alerta"><strong>⚠️ ${banca}:</strong> ${info.etapa.alerta}</div>` : '';
+      conteudo = `
+        <div class="bloco-pill ${fasePill}">Etapa ${info.idx+1} de ${info.total}</div>
+        <div class="bloco-titulo">${info.etapa.titulo}</div>
+        <div class="bloco-detalhe">${info.etapa.desc}</div>
+        ${alertaHTML}
+        <div class="bloco-meta">
+          <span>⏱ <strong>${info.etapa.tempo}</strong></span>
+          <span>🎯 <strong>${info.etapa.meta}</strong></span>
+        </div>`;
+    } else {
+      conteudo = `<div class="bloco-titulo">${MAT_NOME[b.mat] || b.mat}</div>`;
+    }
+
+    // Botões
+    const timerRodando = timer && timer.matId === b.mat && timer.blocoIdx === i;
+    let botoes = '';
+    if(timerRodando) {
+      botoes += `<button class="btn btn-timer running" onclick="stopTimer()">⏱ Em andamento · finalizar</button>`;
+    } else {
+      botoes += `<button class="btn btn-timer" onclick="startTimer('${b.mat}', ${i})">▶ Iniciar cronômetro</button>`;
+    }
+    botoes += `<button class="btn ${feito?'btn-done':''}" onclick="toggleBloco(${i})">${feito?'✓ Bloco feito':'Marcar feito'}</button>`;
+    if(info && !info.concluida && !b.isSimulado && !b.isCorrecao) {
+      botoes += `<button class="btn btn-step" onclick="event.stopPropagation();avancarEtapa('${b.mat}')">✓ Etapa concluída</button>`;
+    }
+    if(info && info.idx > 0) {
+      botoes += `<button class="btn" onclick="event.stopPropagation();voltarEtapa('${b.mat}')">← voltar</button>`;
+    }
+    botoes += `<button class="btn" onclick="abrirDiario('${b.mat}')">📝 Diário</button>`;
+
+    htmlPartes.push(`<div class="bloco-card ${b.tag} ${feito?'feito':''}">
+      <div class="bloco-num">${i+1}</div>
+      <div class="bloco-info">
+        <div class="bloco-horario">${b.hor} · ${MAT_NOME[b.mat] || b.mat}</div>
+        ${conteudo}
+        <div class="bloco-actions">${botoes}</div>
+      </div>
+      <div class="bloco-tempo">${b.tempo}<small>tempo</small></div>
+    </div>`);
+  });
+
+  listEl.innerHTML = htmlPartes.join('');
+  renderExtraStudy();
+}
+
+function toggleBloco(i) {
+  const iso = new Date().toISOString().slice(0,10);
+  if(!blocosFeitos[iso]) blocosFeitos[iso] = [];
+  const idx = blocosFeitos[iso].indexOf(i);
+  if(idx >= 0) blocosFeitos[iso].splice(idx, 1);
+  else blocosFeitos[iso].push(i);
+  save();
+  renderHoje();
+}
+
+function abrirDiario(matId) {
+  goTab('diario');
+  setTimeout(()=>{
+    const sel = document.getElementById('selMat');
+    if(sel && [...sel.options].some(o => o.value === matId)) sel.value = matId;
+  }, 100);
+}
+
+// ═══════════════════════════════════════
+// ESTUDAR OUTRA MATÉRIA (fora do cronograma do dia)
+// ═══════════════════════════════════════
+function renderExtraStudy() {
+  const chipsEl = document.getElementById('extraChips');
+  const blocoEl = document.getElementById('extraBloco');
+  if(!chipsEl || !blocoEl) return;
+
+  // Pegar matérias do dia atual para excluir dos chips
+  const hoje = new Date();
+  const dow = hoje.getDay();
+  const plano = PLANO_SEMANA[dow];
+  const matsDoDia = plano ? plano.blocos.map(b => b.mat) : [];
+
+  // Gerar chips para TODAS as matérias que NÃO estão no dia
+  const todasMats = Object.keys(TRILHAS);
+  chipsEl.innerHTML = todasMats.map(id => {
+    const noDia = matsDoDia.includes(id);
+    const style = noDia
+      ? `background:var(--card-2);color:var(--ink-soft);border:1px solid var(--border);opacity:0.5;cursor:default;`
+      : `background:var(--card);color:var(--ink);border:1px solid ${MAT_COR[id] || 'var(--border)'};cursor:pointer;`;
+    const label = noDia ? `${MAT_NOME[id]} ✓ (já no dia)` : MAT_NOME[id];
+    return `<button onclick="${noDia ? '' : `showExtraBloco('${id}')`}" style="${style}padding:6px 14px;border-radius:18px;font-size:0.78rem;font-weight:500;font-family:var(--font-body);transition:all .2s;">${label}</button>`;
+  }).join('');
+}
+
+function showExtraBloco(matId) {
+  const blocoEl = document.getElementById('extraBloco');
+  if(!blocoEl) return;
+  blocoEl.style.display = 'block';
+
+  const info = getEtapaAtual(matId);
+  if(!info) {
+    blocoEl.innerHTML = `<div class="box" style="text-align:center;color:var(--ink-soft);">Trilha "${MAT_NOME[matId]}" concluída! 🎉</div>`;
+    return;
+  }
+
+  const timerRodando = timer && timer.matId === matId;
+  let botoes = '';
+  if(timerRodando) {
+    botoes += `<button class="btn btn-timer running" onclick="stopTimer()">⏱ Em andamento · finalizar</button>`;
+  } else {
+    botoes += `<button class="btn btn-timer" onclick="startTimer('${matId}', -1)">▶ Iniciar cronômetro</button>`;
+  }
+  if(!info.concluida) {
+    botoes += `<button class="btn btn-step" onclick="event.stopPropagation();avancarEtapa('${matId}');showExtraBloco('${matId}')">✓ Etapa concluída</button>`;
+  }
+  if(info.idx > 0) {
+    botoes += `<button class="btn" onclick="event.stopPropagation();voltarEtapa('${matId}');showExtraBloco('${matId}')">← voltar</button>`;
+  }
+  botoes += `<button class="btn" onclick="abrirDiario('${matId}')">📝 Diário</button>`;
+  botoes += `<button class="btn" onclick="document.getElementById('extraBloco').style.display='none'" style="margin-left:auto;">✕ Fechar</button>`;
+
+  blocoEl.innerHTML = `
+    <div class="bloco-card" style="border-left:4px solid ${MAT_COR[matId] || 'var(--border)'};">
+      <div class="bloco-info" style="flex:1;">
+        <div class="bloco-horario" style="color:${MAT_COR[matId] || 'var(--ink)'}">📚 Estudo extra · ${MAT_NOME[matId]}</div>
+        <div class="bloco-pill">Etapa ${info.idx+1} de ${info.total}</div>
+        <div class="bloco-titulo">${info.etapa.titulo}</div>
+        <div class="bloco-detalhe">${info.etapa.desc}</div>
+        ${info.etapa.alerta ? `<div class="etapa-alerta"><strong>⚠️ IDECAN:</strong> ${info.etapa.alerta}</div>` : ''}
+        <div class="bloco-meta">
+          <span>⏱ <strong>${info.etapa.tempo}</strong></span>
+          <span>🎯 <strong>${info.etapa.meta}</strong></span>
+        </div>
+        <div class="bloco-actions">${botoes}</div>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════
+// SEMANA
+// ═══════════════════════════════════════
+function renderSemana() {
+  const hojeDow = new Date().getDay();
+  const ordem = [1,2,3,4,5,6,0]; // Seg → Dom
+  const el = document.getElementById('semanaTimeline');
+  if(!el) return;
+
+  el.innerHTML = ordem.map(dow => {
+    const p = PLANO_SEMANA[dow];
+    const isH = dow === hojeDow;
+    if(p.descanso) {
+      return `<div class="dia-row descanso ${isH?'hoje-row':''}">
+        <div class="dia-head descanso-h">
+          <div class="dia-titulo">${p.nome} <span class="dia-ap">· ${p.apelido}</span></div>
+          <div class="dia-total">descanso 🌿</div>
+        </div>
+        <div class="descanso-msg">"Mãe que descansa, mãe que rende."</div>
+      </div>`;
+    }
+    let totalMin = 0;
+    p.blocos.forEach(b => {
+      if(b.tempo.includes('h')) {
+        const h = parseInt(b.tempo.match(/(\d+)h/)[1]);
+        const m = parseInt((b.tempo.match(/h(\d+)/) || [0,0])[1]) || 0;
+        totalMin += h*60+m;
+      } else { totalMin += parseInt(b.tempo); }
+    });
+    const totalH = (totalMin/60).toFixed(1);
+
+    // Separar blocos dia/noite pelo emoji do horário (🌙 = noite)
+    const blocosDia = p.blocos.filter(b => !(b.hor && b.hor.includes('🌙')));
+    const blocosNoite = p.blocos.filter(b => b.hor && b.hor.includes('🌙'));
+
+    const renderBloco = (b) => {
+      const fasePill = 'background:var(--alece-dim);border-left:3px solid var(--alece)';
+      const nome = b.isRedacao?'📝 Redação semanal'
+                  :b.isSimulado?'📊 Simulado parcial'
+                  :b.isCorrecao?'🔍 Correção'
+                  :b.isRevisao?'🔁 Revisão'
+                  :b.isFamiliarizacao?'✨ Familiarização'
+                  :(MAT_NOME[b.mat] || b.mat);
+      return `<div class="dia-bloco" style="${fasePill}">
+        <div class="dia-bloco-dot" style="background:${MAT_COR[b.mat] || 'var(--muted)'}"></div>
+        <div class="dia-bloco-mat">${nome}</div>
+        <div class="dia-bloco-h">${b.tempo}</div>
+      </div>`;
+    };
+
+    let conteudoBlocos = '';
+    if(blocosDia.length > 0) {
+      conteudoBlocos += `<div style="display:flex;align-items:center;gap:8px;margin:6px 0 4px;font-size:0.72rem;color:var(--alece);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">🌅 DIA <span style="flex:1;height:1px;background:var(--alece-dim)"></span></div>`;
+      conteudoBlocos += `<div class="dia-blocos">${blocosDia.map(renderBloco).join('')}</div>`;
+    }
+    if(blocosNoite.length > 0) {
+      conteudoBlocos += `<div style="display:flex;align-items:center;gap:8px;margin:10px 0 4px;font-size:0.72rem;color:var(--plum);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">🌙 NOITE <span style="flex:1;height:1px;background:var(--border)"></span></div>`;
+      conteudoBlocos += `<div class="dia-blocos">${blocosNoite.map(renderBloco).join('')}</div>`;
+    }
+
+    return `<div class="dia-row ${isH?'hoje-row':''}">
+      <div class="dia-head">
+        <div class="dia-titulo">${p.nome}${isH?' <span style="color:var(--plum);font-weight:600;font-size:0.85rem">· hoje</span>':''} <span class="dia-ap">· ${p.apelido}</span></div>
+        <div class="dia-total">${totalH}h · ${p.blocos.length} blocos</div>
+      </div>
+      ${conteudoBlocos}
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════
+// TRILHAS
+// ═══════════════════════════════════════
+// Filtro de tipo para trilhas — guardado em state
+let trilhaTipoFiltro = 'todas'; // 'todas' | 'alece' | 'tj' | '2x'
+function setTrilhaTipo(t) {
+  trilhaTipoFiltro = t;
+  renderTrilhas();
+}
+
+// Helper: badge de tipo — vazio (painel 100% ALECE, badge redundante)
+function tipoBadgeHTML(tipo) {
+  return '';
+}
+
+function renderTrilhas() {
+  const chipsEl = document.getElementById('trilhasChips');
+  if(chipsEl) {
+    chipsEl.innerHTML = Object.entries(TRILHAS).map(([id, t]) => {
+      const tipoCls = t.tipo === 'alece' ? 'tipo-chip-alece'
+                    : t.tipo === 'tj'    ? 'tipo-chip-tj'
+                    : t.tipo === '2x'    ? 'tipo-chip-2x' : '';
+      return `<button class="trilha-chip ${tipoCls}" style="--cor:${t.cor}" onclick="document.getElementById('trilha-${id}').scrollIntoView({behavior:'smooth',block:'start'})">${t.nome}</button>`;
+    }).join('');
+  }
+
+  const c = document.getElementById('trilhasContent');
+  if(!c) return;
+
+  // Sem filtro de tipo — 100% ALECE
+  const filtroHTML = '';
+
+  // Legenda de profundidade
+  const legendaHTML = `
+    <div class="legenda-prof">
+      <span class="legenda-prof-lbl">📚 Estratégia Reverso · Profundidade variável:</span>
+      <span class="legenda-item"><span class="prof-selo prof-denso">🔴 denso</span> 30+ questões + teoria + ficha</span>
+      <span class="legenda-item"><span class="prof-selo prof-medio">🟡 médio</span> 15 questões + resumo</span>
+      <span class="legenda-item"><span class="prof-selo prof-amplo">🟢 amplo</span> 10 questões + lei seca</span>
+    </div>
+  `;
+
+  // Filtrar trilhas pelo tipo
+  const entradas = Object.entries(TRILHAS).filter(([id, t]) => {
+    if(trilhaTipoFiltro === 'todas') return true;
+    return t.tipo === trilhaTipoFiltro;
+  });
+
+  if(entradas.length === 0) {
+    c.innerHTML = filtroHTML + legendaHTML + `<div class="box"><p>Nenhuma trilha encontrada com este filtro.</p></div>`;
+    return;
+  }
+
+  c.innerHTML = filtroHTML + legendaHTML + entradas.map(([id, trilha]) => {
+    const atual = trilhas[id] ?? 0;
+    const total = trilha.etapas.length;
+    const conc = Math.min(atual, total);
+    const pct = Math.round(conc/total*100);
+    const atualTitulo = trilha.etapas[Math.min(atual, total-1)].titulo;
+    const tipoCls = trilha.tipo ? `tipo-${trilha.tipo}` : '';
+
+    // Contagem por profundidade
+    let nDenso = 0, nMedio = 0, nAmplo = 0;
+    trilha.etapas.forEach((_, i) => {
+      const p = getProf(id, i);
+      if(p === 'denso') nDenso++;
+      else if(p === 'amplo') nAmplo++;
+      else nMedio++;
+    });
+
+    return `<div class="trilha-card ${tipoCls}" id="trilha-${id}">
+      <div class="trilha-head">
+        <div>
+          <div class="trilha-nome" style="color:${trilha.cor};display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+            ${trilha.nome} ${tipoBadgeHTML(trilha.tipo)}
+          </div>
+          <div class="trilha-sub">${trilha.info}</div>
+          <div class="trilha-sub" style="margin-top:6px">Etapa atual: <strong>${atualTitulo}</strong></div>
+          <div class="trilha-sub" style="margin-top:4px;display:flex;gap:10px;flex-wrap:wrap">
+            <span class="prof-selo prof-denso">🔴 ${nDenso}</span>
+            <span class="prof-selo prof-medio">🟡 ${nMedio}</span>
+            <span class="prof-selo prof-amplo">🟢 ${nAmplo}</span>
+          </div>
+        </div>
+        <div class="trilha-stat">${conc}/${total}<small>${pct}% concluído</small></div>
+      </div>
+      <div class="trilha-bar"><div class="trilha-fill" style="width:${pct}%;background:${trilha.cor}"></div></div>
+      <div class="etapas">
+        ${trilha.etapas.map((e,i) => {
+          const feita = i < atual;
+          const ehAtual = i === atual;
+          const cls = feita ? 'feita' : (ehAtual ? 'atual' : '');
+          const open = trilhas['open_'+id+'_'+i];
+          const prof = getProf(id, i);
+          const profHTML = prof ? `<span class="prof-selo prof-${prof}" title="${PROF_LABEL[prof].desc}">${PROF_LABEL[prof].tag}</span>` : '';
+          const bancaCobra = 'IDECAN';
+          const alertaHTML = e.alerta ? `<div class="etapa-alerta"><strong>⚠️ ${bancaCobra}:</strong> ${e.alerta}</div>` : '';
+          const estrategiaHTML = prof ? `
+            <div class="etapa-alerta" style="background:rgba(106,132,90,0.08);border-color:rgba(106,132,90,0.3);color:var(--ink-soft);margin-top:6px">
+              <strong>${PROF_LABEL[prof].tag} · estratégia:</strong> ${PROF_LABEL[prof].desc}
+            </div>` : '';
+          return `<div class="etapa-wrap">
+            <div class="etapa ${cls} ${open?'open':''}" onclick="toggleExpand('${id}',${i})">
+              <div class="etapa-dot">${feita?'✓':i+1}</div>
+              <div class="etapa-titulo-wrap">
+                <div class="etapa-titulo">${e.titulo} ${profHTML}</div>
+                ${ehAtual ? '<div class="etapa-badge">↑ você está aqui</div>' : ''}
+              </div>
+              <div class="etapa-tempo">${e.tempo}</div>
+              <div class="etapa-arrow">${open?'▲':'▼'}</div>
+            </div>
+            ${open ? `
+              <div class="etapa-detail">
+                <div class="etapa-desc">${e.desc}</div>
+                ${alertaHTML}
+                ${estrategiaHTML}
+                <div class="etapa-meta">
+                  <span>⏱ <strong>${e.tempo}</strong></span>
+                  <span>🎯 <strong>${e.meta}</strong></span>
+                </div>
+                <div class="etapa-actions">
+                  ${ehAtual ? (
+                    timer && timer.matId === id
+                      ? `<button class="btn btn-timer running" onclick="event.stopPropagation();stopTimer()">⏱ Em andamento · finalizar</button>`
+                      : `<button class="btn btn-timer" onclick="event.stopPropagation();startTimer('${id}', -1)">▶ Estudar agora (cronômetro)</button>`
+                  ) : ''}
+                  ${!ehAtual && !feita ? `<button class="btn btn-step" onclick="event.stopPropagation();irParaEtapa('${id}',${i})">Ir para esta etapa</button>` : ''}
+                  ${ehAtual ? `<button class="btn btn-step" onclick="event.stopPropagation();avancarEtapa('${id}')">✓ Concluí esta etapa</button>` : ''}
+                  ${feita ? `<button class="btn" onclick="event.stopPropagation();irParaEtapa('${id}',${i})">↺ Reabrir (revisão)</button>` : ''}
+                </div>
+              </div>` : ''}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════
+// DIÁRIO
+// ═══════════════════════════════════════
+function renderLogSelect() {
+  const s = document.getElementById('selMat');
+  if(!s) return;
+  s.innerHTML = Object.keys(MAT_NOME).map(id => `<option value="${id}">${MAT_NOME[id]}</option>`).join('');
+}
+
+function addLog() {
+  const matId = document.getElementById('selMat').value;
+  const horas = parseFloat(document.getElementById('fHoras').value) || 1;
+  const conf = parseInt(document.getElementById('fConf').value) || 3;
+  const nota = document.getElementById('fNota').value.trim();
+  logs.unshift({
+    id: Date.now(), matId, matNome: MAT_NOME[matId], horas, conf, nota,
+    data: new Date().toISOString()
+  });
+  save();
+  document.getElementById('fNota').value = '';
+  renderLogs();
+  renderHoje();
+  renderProgress();
+}
+
+function renderLogs() {
+  const list = document.getElementById('logList');
+  if(!list) return;
+  if(!logs.length) {
+    list.innerHTML = '<div class="empty">Nenhuma sessão ainda. Comece hoje!</div>';
+    return;
+  }
+  list.innerHTML = logs.slice(0, 60).map(l => `
+    <div class="log-item" style="border-left-color:${MAT_COR[l.matId]||'var(--plum)'}">
+      <div>
+        <div class="log-mat">${l.matNome}</div>
+        <div class="log-meta">${new Date(l.data).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})} · ${l.horas}h · ${'⭐'.repeat(l.conf)}</div>
+        ${l.nota?`<div class="log-nota">${l.nota}</div>`:''}
+      </div>
+      <span class="log-del" onclick="delLog(${l.id})">✕</span>
+    </div>`).join('');
+}
+
+function delLog(id) {
+  logs = logs.filter(l => l.id !== id);
+  save();
+  renderLogs();
+  renderHoje();
+  renderProgress();
+}
+
+// ═══════════════════════════════════════
+// PROGRESSO
+// ═══════════════════════════════════════
+function getHoras(matId) { return logs.filter(l => l.matId === matId).reduce((s,l)=>s+l.horas, 0); }
+function totalHoras() { return logs.reduce((s,l)=>s+l.horas, 0); }
+function getDiasUnicos() { return new Set(logs.map(l => l.data.slice(0,10))).size; }
+
+const METAS = {
+  port: 100, rlm: 70, leg: 100,
+  // TJ zerado
+  const: 0, adm: 0, civil: 0, proc: 0, pen: 0, procp: 0, pcd: 0,
+  // ALECE — Raiza é boa em interpretação mas fraca em gramática
+  redoff: 30, arqv: 28, procleg: 24, admin: 22, atend: 15, ferr: 20
+};
+
+// Classificação por concurso (Let: 100% ALECE)
+const MAT_CONCURSO = {
+  port: 'alece', rlm: 'alece', leg: 'alece',
+  redoff: 'alece', arqv: 'alece', procleg: 'alece',
+  admin: 'alece', atend: 'alece', ferr: 'alece',
+  // TJ — não usado por Let
+  const: 'tj', adm: 'tj', civil: 'tj', proc: 'tj', pen: 'tj', procp: 'tj', pcd: 'tj'
+};
+
+function renderProgress() {
+  const s = document.getElementById('statsProgress');
+  if(s) {
+    const t = totalHoras();
+    const metaTotal = Object.values(METAS).reduce((a,b)=>a+b,0);
+    s.innerHTML = `
+      <div class="stat-card"><div class="stat-val" style="color:var(--sage)">${getDiasUnicos()}</div><div class="stat-lbl">Dias estudados</div></div>
+      <div class="stat-card"><div class="stat-val">${t.toFixed(1)}h</div><div class="stat-lbl">Horas totais</div></div>
+      <div class="stat-card"><div class="stat-val">${logs.length}</div><div class="stat-lbl">Sessões</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--gold)">${Math.min(100,Math.round(t/metaTotal*100))}%</div><div class="stat-lbl">Progresso geral</div></div>`;
+  }
+
+  // Barra única de progresso geral ALECE
+  const dualEl = document.getElementById('progDual');
+  if(dualEl) {
+    const matsAlece = Object.keys(MAT_CONCURSO).filter(m => MAT_CONCURSO[m]==='alece');
+    const horas = matsAlece.reduce((s,m) => s + getHoras(m), 0);
+    const metas = matsAlece.reduce((s,m) => s + (METAS[m]||30), 0);
+    const pct = Math.min(100, Math.round(horas/metas*100));
+
+    dualEl.innerHTML = `
+      <div class="prog-card" style="border-left:4px solid var(--alece);">
+        <h4 style="color:var(--alece)">🎯 ALECE — Técnico Legislativo · progresso geral</h4>
+        <div class="prog-bar"><div class="prog-fill" style="width:${pct}%;background:var(--alece)"></div></div>
+        <div class="prog-pct"><span>${horas.toFixed(1)}h / ${metas}h</span><span>${pct}%</span></div>
+      </div>
+    `;
+  }
+
+  const g = document.getElementById('progGrid');
+  if(!g) return;
+  // Só matérias ALECE (filtra as TJ zeradas)
+  g.innerHTML = Object.keys(MAT_NOME).filter(id => MAT_CONCURSO[id] === 'alece').map(id => {
+    const h = getHoras(id);
+    const meta = METAS[id] || 30;
+    const pct = Math.min(100, Math.round(h/meta*100));
+    return `<div class="prog-card">
+      <h4 style="color:${MAT_COR[id]||'var(--ink)'}">${MAT_NOME[id]}</h4>
+      <div class="prog-bar"><div class="prog-fill" style="width:${pct}%;background:${MAT_COR[id]||'var(--ink)'}"></div></div>
+      <div class="prog-pct"><span>${h.toFixed(1)}h / ${meta}h</span><span>${pct}%</span></div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════
+// COUNTDOWNS
+// ═══════════════════════════════════════
+function updateCountdowns() {
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+  const provaAlece = new Date(2026, 7, 16);
+  const inscFim = new Date(2026, 5, 22);
+
+  const dAlece = Math.ceil((provaAlece - hoje)/86400000);
+  const dI = Math.ceil((inscFim - hoje)/86400000);
+  const dC = Math.ceil((DATA_INICIO_CICLO - hoje)/86400000);
+
+  document.getElementById('cdProvaAlece').textContent = dAlece > 0 ? `${dAlece} dias` : (dAlece === 0 ? 'HOJE!' : '— realizada');
+  document.getElementById('cdInsc').textContent = dI > 0 ? `${dI} dias` : '— encerradas';
+
+  const ciclo = document.getElementById('cdCiclo');
+  const cicloInfo = document.getElementById('cdCicloInfo');
+  if(ciclo) {
+    if(dC > 1) {
+      ciclo.textContent = `${dC} dias`;
+      cicloInfo.textContent = 'Segunda, 25/05/2026';
+    } else if(dC === 1) {
+      ciclo.textContent = 'amanhã';
+      cicloInfo.textContent = 'Segunda, 25/05/2026';
+    } else if(dC === 0) {
+      ciclo.textContent = 'HOJE!';
+      cicloInfo.textContent = '🎯 dia oficial de início';
+    } else {
+      ciclo.textContent = '✓ ativo';
+      cicloInfo.textContent = `há ${Math.abs(dC)} dias em ciclo`;
+    }
+  }
+
+  const d = new Date();
+  document.getElementById('dateBadge').textContent =
+    d.toLocaleDateString('pt-BR', { weekday:'long', day:'2-digit', month:'long' })
+      .replace(/^./, c => c.toUpperCase());
+}
+
+// ═══════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════
+function goTab(name) {
+  const order = ['hoje','semana','trilhas','edital','estrategia','rotina','diario','progresso'];
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  document.querySelectorAll('.tab')[order.indexOf(name)].classList.add('active');
+  if(name === 'hoje') renderHoje();
+  if(name === 'semana') renderSemana();
+  if(name === 'trilhas') renderTrilhas();
+  if(name === 'progresso') renderProgress();
+}
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+function init() {
+  updateCountdowns();
+  renderLogSelect();
+  renderLogs();
+  renderHoje();
+  renderSemana();
+  renderTrilhas();
+  renderProgress();
+  restoreTimer();
+}
+
+init();
+</script>
+
+</body>
+</html>
